@@ -102,6 +102,27 @@
   color: var(--gold-dim);
 }
 
+.btnRoster {
+  display: inline-block;
+  padding: 8px 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid rgba(107,85,48,0.5);
+  color: var(--text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnRoster:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold-dim);
+  background: rgba(107,85,48,0.1);
+}
+
 .steps {
   text-align: left;
   background: rgba(20,17,12,0.4);

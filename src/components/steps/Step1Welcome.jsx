@@ -1,6 +1,6 @@
 import styles from './Step1Welcome.module.css';
 
-export default function Step1Welcome({ onStart, hasSavedChar, onRestore, onLoadFile }) {
+export default function Step1Welcome({ onStart, hasSavedChar, onRestore, onLoadFile, onViewRoster }) {
   return (
     <div className={styles.welcome}>
       <div className={styles.runeRow}>ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ</div>
@@ -46,6 +46,10 @@ export default function Step1Welcome({ onStart, hasSavedChar, onRestore, onLoadF
             onChange={onLoadFile}
           />
         </label>
+
+        <button type="button" className={styles.btnRoster} onClick={onViewRoster}>
+          View Character Roster
+        </button>
       </div>
 
       <div className={styles.steps}>

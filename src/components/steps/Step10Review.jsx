@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import styles from './Step10Review.module.css';
 import cultures from '../../data/cultures.json';
 import callings from '../../data/callings.json';
@@ -37,7 +37,7 @@ function PipRow({ value, max = 6 }) {
   );
 }
 
-export default function Step10Review({ character }) {
+export default function Step10Review({ character, onSaveToRoster, onViewRoster }) {
   const culture = cultures.find(c => c.id === character.cultureId);
   const calling = callings.find(c => c.id === character.callingId);
 
@@ -100,6 +100,15 @@ export default function Step10Review({ character }) {
 
   const handlePrint = () => window.print();
 
+  const [savedToRoster, setSavedToRoster] = useState(false);
+  const handleSaveToRoster = useCallback(() => {
+    if (onSaveToRoster) {
+      onSaveToRoster();
+      setSavedToRoster(true);
+      setTimeout(() => setSavedToRoster(false), 2500);
+    }
+  }, [onSaveToRoster]);
+
   if (!culture || !calling) return <div className={styles.container}><p>Please complete all steps first.</p></div>;
 
   return (
@@ -109,6 +118,21 @@ export default function Step10Review({ character }) {
         <button type="button" className={styles.exportBtn} onClick={handleExportHTML}>Download HTML</button>
         <button type="button" className={styles.exportBtn} onClick={handleExportJSON}>Save as JSON</button>
         <button type="button" className={styles.exportBtn} onClick={handleShareURL}>Copy Share URL</button>
+        {onSaveToRoster && (
+          <button
+            type="button"
+            className={`${styles.exportBtn} ${savedToRoster ? styles.exportBtnSaved : styles.exportBtnRoster}`}
+            onClick={handleSaveToRoster}
+            disabled={savedToRoster}
+          >
+            {savedToRoster ? '✓ Saved to Roster' : 'Save to Roster'}
+          </button>
+        )}
+        {onViewRoster && (
+          <button type="button" className={styles.exportBtnSecondary} onClick={onViewRoster}>
+            View Roster →
+          </button>
+        )}
       </div>
 
       <div className={styles.sheet} id="character-sheet">

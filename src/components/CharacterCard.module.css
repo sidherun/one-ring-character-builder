@@ -1,0 +1,111 @@
+.card {
+  background: linear-gradient(135deg, rgba(45,40,32,0.95), rgba(35,30,22,0.98));
+  border: 1px solid var(--border-ornate);
+  border-radius: 3px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.card:hover {
+  border-color: var(--gold-dim);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.name {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 16px;
+  color: var(--gold-bright);
+  line-height: 1.3;
+}
+
+.badge {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--stone-dark);
+  background: var(--gold-dim);
+  padding: 2px 8px;
+  border-radius: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.meta {
+  font-family: 'IM Fell English', serif;
+  font-size: 14px;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dot {
+  color: var(--gold-dim);
+}
+
+.savedAt {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--label-text);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btnLoad {
+  flex: 1;
+  padding: 9px 16px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, rgba(168,138,69,0.4), rgba(138,111,53,0.2));
+  border: 1px solid var(--gold-dim);
+  color: var(--gold-bright);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnLoad:hover {
+  background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(138,111,53,0.3));
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 10px rgba(201,168,76,0.2);
+}
+
+.btnDelete {
+  padding: 9px 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid rgba(139,32,32,0.5);
+  color: #c07070;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnDelete:hover {
+  border-color: #8b2020;
+  color: #e08080;
+  background: rgba(139,32,32,0.15);
+}

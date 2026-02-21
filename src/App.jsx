@@ -14,6 +14,7 @@ import Step9Identity from './components/steps/Step9Identity';
 import Step10Review from './components/steps/Step10Review';
 import { createDefaultCharacter } from './utils/defaultCharacter';
 import { saveToLocalStorage, loadFromLocalStorage, decodeCharacterFromHash } from './utils/urlState';
+import { saveCharacterToRoster } from './utils/rosterStorage';
 import cultures from './data/cultures.json';
 import callings from './data/callings.json';
 
@@ -94,12 +95,23 @@ function computeCombatBase(character) {
   return base;
 }
 
-export default function App() {
+export default function App({ onNavigateToRoster, characterToLoad, onCharacterLoaded }) {
   const [step, setStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
   const [character, setCharacter] = useState(createDefaultCharacter());
   const [hasSaved, setHasSaved] = useState(false);
   const [showRestorePrompt, setShowRestorePrompt] = useState(false);
+
+  // Load a character from the roster when Router passes one in
+  useEffect(() => {
+    if (characterToLoad) {
+      setCharacter(characterToLoad);
+      setStep(characterToLoad.wizardStep || 10);
+      setCompletedSteps([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+      setShowRestorePrompt(false);
+      if (onCharacterLoaded) onCharacterLoaded();
+    }
+  }, [characterToLoad, onCharacterLoaded]);
 
   // Check for URL hash or local storage on mount
   useEffect(() => {
@@ -151,6 +163,11 @@ export default function App() {
     setCompletedSteps([1]);
   };
 
+  const handleSaveToRoster = useCallback(() => {
+    const id = saveCharacterToRoster({ ...character, wizardStep: step });
+    return id;
+  }, [character, step]);
+
   const handleRestore = () => {
     const saved = loadFromLocalStorage();
     if (saved) {
@@ -196,6 +213,7 @@ export default function App() {
             hasSavedChar={hasSaved && showRestorePrompt}
             onRestore={handleRestore}
             onLoadFile={handleLoadFile}
+            onViewRoster={onNavigateToRoster}
           />
         );
       case 2:
@@ -215,7 +233,7 @@ export default function App() {
       case 9:
         return <Step9Identity character={character} onChange={updateCharacter} />;
       case 10:
-        return <Step10Review character={character} />;
+        return <Step10Review character={character} onSaveToRoster={handleSaveToRoster} onViewRoster={onNavigateToRoster} />;
       default:
         return null;
     }
