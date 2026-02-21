@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap');
+
+:root {
+  --stone-dark: #1a1714;
+  --stone-mid: #2d2820;
+  --stone-light: #3d3428;
+  --stone-surface: #4a3f30;
+  --gold-bright: #c9a84c;
+  --gold-dim: #a88a45;
+  --gold-pale: #e8d08a;
+  --rune-glow: #d4a843;
+  --text-primary: #e8dcc8;
+  --text-secondary: #c8ad88;
+  --text-dim: #9a8a6a;
+  --label-text: #b0a080;
+  --red-shadow: #8b2020;
+  --copper: #a0522d;
+  --border-ornate: #6b5530;
+  --body-tint: rgba(40,30,12,0.85);
+  --heart-tint: rgba(35,15,15,0.85);
+  --wits-tint: rgba(15,20,30,0.85);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { min-height: 100vh; }
+
+body {
+  margin: 0;
+  background-color: var(--stone-dark);
+  background-image:
+    radial-gradient(ellipse at 20% 20%, rgba(42,35,25,0.8) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, rgba(30,24,16,0.9) 0%, transparent 60%);
+  font-family: 'IM Fell English', serif;
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root { min-height: 100vh; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--stone-mid); }
+::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 3px; }
+
+button {
+  cursor: pointer;
+  font-family: 'Cinzel', serif;
+  border: none;
+}
+
+input, textarea, select {
+  font-family: 'IM Fell English', serif;
+  color: var(--text-primary);
+  background: rgba(20,17,12,0.8);
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  padding: 6px 10px;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--gold-dim);
+  box-shadow: 0 0 6px rgba(201,168,76,0.2);
+}
+
+select option {
+  background: var(--stone-mid);
+}
+
+a { color: var(--gold-bright); }

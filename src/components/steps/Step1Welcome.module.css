@@ -1,0 +1,148 @@
+.welcome {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  text-align: center;
+}
+
+.runeRow {
+  font-size: 20px;
+  letter-spacing: 12px;
+  color: var(--gold-dim);
+  opacity: 0.6;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 36px;
+  color: var(--gold-bright);
+  text-shadow: 0 0 30px rgba(201,168,76,0.4), 0 2px 4px rgba(0,0,0,0.8);
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.divider {
+  color: var(--gold-dim);
+  letter-spacing: 12px;
+  margin: 20px 0;
+  opacity: 0.7;
+}
+
+.intro {
+  text-align: left;
+  background: linear-gradient(135deg, rgba(45,40,32,0.95), rgba(35,30,22,0.98));
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.intro p { margin-bottom: 12px; }
+.intro p:last-child { margin-bottom: 0; }
+.intro strong { color: var(--gold-bright); }
+.intro em { color: var(--text-primary); font-style: italic; }
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.btnStart {
+  padding: 14px 40px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, rgba(138,111,53,0.5), rgba(138,111,53,0.3));
+  border: 1px solid var(--gold-bright);
+  color: var(--gold-bright);
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.btnStart:hover {
+  background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(138,111,53,0.4));
+  box-shadow: 0 0 20px rgba(201,168,76,0.2);
+}
+
+.btnSecondary {
+  display: inline-block;
+  padding: 8px 20px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid var(--border-ornate);
+  color: var(--text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnSecondary:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold-dim);
+}
+
+.steps {
+  text-align: left;
+  background: rgba(20,17,12,0.4);
+  border: 1px solid rgba(107,85,48,0.3);
+  border-radius: 2px;
+  padding: 16px 20px;
+}
+
+.stepsTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 12px;
+}
+
+.stepsList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 20px;
+  counter-reset: step;
+}
+
+.stepsList li {
+  counter-increment: step;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.stepsList li::before {
+  content: counter(step);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 13px;
+  color: var(--gold-dim);
+  min-width: 16px;
+}

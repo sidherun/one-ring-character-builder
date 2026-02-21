@@ -1,0 +1,266 @@
+[
+  {
+    "id": "bardings",
+    "name": "Bardings of Dale",
+    "description": "The Bardings are Northmen of noble origins hailing from Wilderland, far off to the east. They rebuilt their city of Dale from its ashes after the slaying of the Dragon Smaug and earned a new prosperity trading with nearby kingdoms of Elves and Dwarves.",
+    "flavorQuote": "He was a descendant in long line of Girion, Lord of Dale…",
+    "standardOfLiving": "Prosperous",
+    "ageRange": [18, 40],
+    "culturalBlessing": {
+      "name": "Stout-hearted",
+      "description": "Stories tell that the Bardings lived under the shadow of a great Dragon for decades. Your VALOUR rolls are Favoured."
+    },
+    "attributeSets": [
+      { "roll": 1, "strength": 5, "heart": 7, "wits": 2 },
+      { "roll": 2, "strength": 4, "heart": 7, "wits": 3 },
+      { "roll": 3, "strength": 5, "heart": 6, "wits": 3 },
+      { "roll": 4, "strength": 4, "heart": 6, "wits": 4 },
+      { "roll": 5, "strength": 5, "heart": 5, "wits": 4 },
+      { "roll": 6, "strength": 6, "heart": 6, "wits": 2 },
+      { "roll": 7, "freeAssign": true }
+    ],
+    "derivedStats": {
+      "endurance": { "formula": "strength + 20", "modifier": 20 },
+      "hope": { "formula": "heart + 8", "modifier": 8 },
+      "parry": { "formula": "wits + 12", "modifier": 12 }
+    },
+    "skills": {
+      "awe": 1, "athletics": 1, "awareness": 0, "hunting": 2, "song": 1, "craft": 1,
+      "travel": 1, "enhearten": 2, "persuade": 3, "stealth": 0, "scan": 1, "insight": 2,
+      "explore": 1, "healing": 0, "riddle": 0, "lore": 1, "courtesy": 2, "battle": 2
+    },
+    "favouredSkillChoices": ["persuade", "courtesy"],
+    "combatProficiencies": {
+      "fixed": [{ "skill": "bows", "rank": 2, "or": "swords" }],
+      "freeChoice": 1,
+      "freeRank": 1
+    },
+    "distinctiveFeatureChoices": ["Bold", "Eager", "Fair", "Fierce", "Generous", "Proud", "Tall", "Wilful"],
+    "startingEquipment": {
+      "weapons": ["Sword", "Bow"],
+      "armour": "Leather Corslet",
+      "gear": ["Travelling Gear"]
+    }
+  },
+  {
+    "id": "dwarves",
+    "name": "Dwarves of Durin's Folk",
+    "description": "The Dwarves of Durin's Folk are proud and secretive, stout-hearted and enduring. They dwell beneath the mountains and are master craftsmen, renowned throughout Middle-earth.",
+    "flavorQuote": "Gimli the dwarf alone wore openly a short shirt of steel-rings, for dwarves make light of burdens…",
+    "standardOfLiving": "Prosperous",
+    "ageRange": [40, 240],
+    "culturalBlessing": {
+      "name": "Redoubtable",
+      "description": "Dwarves make light of burdens, especially when it comes to wearing armour. You halve the Load rating of any armour you're wearing (rounding fractions up), including helms (but not shields)."
+    },
+    "attributeSets": [
+      { "roll": 1, "strength": 7, "heart": 5, "wits": 2 },
+      { "roll": 2, "strength": 6, "heart": 5, "wits": 3 },
+      { "roll": 3, "strength": 7, "heart": 4, "wits": 3 },
+      { "roll": 4, "strength": 6, "heart": 4, "wits": 4 },
+      { "roll": 5, "strength": 5, "heart": 5, "wits": 4 },
+      { "roll": 6, "strength": 6, "heart": 2, "wits": 6 },
+      { "roll": 7, "freeAssign": true }
+    ],
+    "derivedStats": {
+      "endurance": { "formula": "strength + 22", "modifier": 22 },
+      "hope": { "formula": "heart + 8", "modifier": 8 },
+      "parry": { "formula": "wits + 10", "modifier": 10 }
+    },
+    "skills": {
+      "awe": 2, "athletics": 1, "awareness": 0, "hunting": 0, "song": 1, "craft": 2,
+      "travel": 3, "enhearten": 0, "persuade": 0, "stealth": 0, "scan": 3, "insight": 0,
+      "explore": 2, "healing": 0, "riddle": 2, "lore": 1, "courtesy": 1, "battle": 1
+    },
+    "favouredSkillChoices": ["awe", "craft"],
+    "combatProficiencies": {
+      "fixed": [{ "skill": "axes", "rank": 2, "or": null }],
+      "freeChoice": 1,
+      "freeRank": 1
+    },
+    "distinctiveFeatureChoices": ["Determined", "Fierce", "Generous", "Proud", "Secretive", "Stern", "Suspicious", "Tall"],
+    "startingEquipment": {
+      "weapons": ["Axe", "Mattock"],
+      "armour": "Short Coat of Mail",
+      "gear": ["Travelling Gear"]
+    }
+  },
+  {
+    "id": "elves",
+    "name": "Elves of Lindon",
+    "description": "The long-lived Elves of Lindon sometimes leave their land along the western coasts to wander across Eriador, to witness with their immortal eyes the fading of the glories of the past.",
+    "flavorQuote": "\"Keen are the eyes of the Elves,\" he said.",
+    "standardOfLiving": "Rich",
+    "ageRange": [100, 300],
+    "culturalBlessing": {
+      "name": "Elven-skill",
+      "description": "By virtue of their birthright, Elves are capable of reaching levels of finesse unattainable by mortals. If you are not Miserable, you can spend 1 point of Hope to achieve a Magical success on a roll when using a Skill in which you possess at least one rank."
+    },
+    "attributeSets": [
+      { "roll": 1, "strength": 5, "heart": 2, "wits": 7 },
+      { "roll": 2, "strength": 4, "heart": 3, "wits": 7 },
+      { "roll": 3, "strength": 5, "heart": 3, "wits": 6 },
+      { "roll": 4, "strength": 4, "heart": 4, "wits": 6 },
+      { "roll": 5, "strength": 5, "heart": 4, "wits": 5 },
+      { "roll": 6, "strength": 6, "heart": 2, "wits": 6 },
+      { "roll": 7, "freeAssign": true }
+    ],
+    "derivedStats": {
+      "endurance": { "formula": "strength + 20", "modifier": 20 },
+      "hope": { "formula": "heart + 8", "modifier": 8 },
+      "parry": { "formula": "wits + 12", "modifier": 12 }
+    },
+    "skills": {
+      "awe": 2, "athletics": 2, "awareness": 2, "hunting": 0, "song": 2, "craft": 2,
+      "travel": 0, "enhearten": 1, "persuade": 0, "stealth": 3, "scan": 0, "insight": 0,
+      "explore": 0, "healing": 1, "riddle": 0, "lore": 3, "courtesy": 0, "battle": 0
+    },
+    "favouredSkillChoices": ["song", "lore"],
+    "combatProficiencies": {
+      "fixed": [{ "skill": "bows", "rank": 2, "or": "spears" }],
+      "freeChoice": 1,
+      "freeRank": 1
+    },
+    "distinctiveFeatureChoices": ["Fair", "Keen-eyed", "Lordly", "Merry", "Patient", "Subtle", "Swift", "Wary"],
+    "startingEquipment": {
+      "weapons": ["Bow", "Spear"],
+      "armour": "Leather Corslet",
+      "gear": ["Travelling Gear"]
+    }
+  },
+  {
+    "id": "hobbits",
+    "name": "Hobbits of the Shire",
+    "description": "Hobbits are a small and merry folk, possessing a love for time-honoured traditions and respectable ways, and a strong dislike for anything out of the ordinary. Since the return of Bilbo Baggins, something has changed, and more adventurous Hobbits are answering the call.",
+    "flavorQuote": "…he wished to go and see the great mountains, and hear the pine-trees and the waterfalls…",
+    "standardOfLiving": "Common",
+    "ageRange": [33, 70],
+    "culturalBlessing": {
+      "name": "Hobbit-sense",
+      "description": "Hobbits have learned their place in the world a long time ago, and they display a robust capacity for insight that many folks mistake for lack of courage. Your WISDOM rolls are Favoured, and you gain an advantage die on all Shadow Tests made to resist the effects of Greed."
+    },
+    "halfling": true,
+    "attributeSets": [
+      { "roll": 1, "strength": 3, "heart": 6, "wits": 5 },
+      { "roll": 2, "strength": 3, "heart": 7, "wits": 4 },
+      { "roll": 3, "strength": 2, "heart": 7, "wits": 5 },
+      { "roll": 4, "strength": 4, "heart": 6, "wits": 4 },
+      { "roll": 5, "strength": 4, "heart": 5, "wits": 5 },
+      { "roll": 6, "strength": 2, "heart": 6, "wits": 6 },
+      { "roll": 7, "freeAssign": true }
+    ],
+    "derivedStats": {
+      "endurance": { "formula": "strength + 18", "modifier": 18 },
+      "hope": { "formula": "heart + 10", "modifier": 10 },
+      "parry": { "formula": "wits + 12", "modifier": 12 }
+    },
+    "skills": {
+      "awe": 0, "athletics": 0, "awareness": 2, "hunting": 0, "song": 2, "craft": 1,
+      "travel": 0, "enhearten": 0, "persuade": 2, "stealth": 3, "scan": 0, "insight": 2,
+      "explore": 0, "healing": 1, "riddle": 3, "lore": 0, "courtesy": 2, "battle": 0
+    },
+    "favouredSkillChoices": ["stealth", "riddle"],
+    "combatProficiencies": {
+      "fixed": [{ "skill": "bows", "rank": 2, "or": "swords" }],
+      "freeChoice": 1,
+      "freeRank": 1
+    },
+    "distinctiveFeatureChoices": ["Eager", "Fair-spoken", "Faithful", "Generous", "Inquisitive", "Patient", "Rustic", "True-hearted"],
+    "startingEquipment": {
+      "weapons": ["Short Sword", "Bow"],
+      "armour": "None",
+      "gear": ["Travelling Gear"]
+    }
+  },
+  {
+    "id": "menofbree",
+    "name": "Men of Bree",
+    "description": "The inhabitants of the Bree-land are the descendants of the ancient people that first dwelt in Eriador. They live at an old meeting of ways, and travellers of various sorts still pass through, bringing strange tales and news from afar.",
+    "flavorQuote": "The Men of Bree were brown-haired, broad, and rather short, cheerful and independent…",
+    "standardOfLiving": "Common",
+    "ageRange": [18, 40],
+    "culturalBlessing": {
+      "name": "Bree-blood",
+      "description": "Due to the position of their homeland, the Men of Bree enjoy better relationships with Hobbits, Dwarves, Elves, and other inhabitants of the world about them than is considered usual. Each Man of Bree in the Company increases the Fellowship Rating by 1 point."
+    },
+    "attributeSets": [
+      { "roll": 1, "strength": 2, "heart": 5, "wits": 7 },
+      { "roll": 2, "strength": 3, "heart": 4, "wits": 7 },
+      { "roll": 3, "strength": 3, "heart": 5, "wits": 6 },
+      { "roll": 4, "strength": 4, "heart": 4, "wits": 6 },
+      { "roll": 5, "strength": 4, "heart": 5, "wits": 5 },
+      { "roll": 6, "strength": 2, "heart": 6, "wits": 6 },
+      { "roll": 7, "freeAssign": true }
+    ],
+    "derivedStats": {
+      "endurance": { "formula": "strength + 20", "modifier": 20 },
+      "hope": { "formula": "heart + 10", "modifier": 10 },
+      "parry": { "formula": "wits + 10", "modifier": 10 }
+    },
+    "skills": {
+      "awe": 0, "athletics": 1, "awareness": 1, "hunting": 1, "song": 1, "craft": 2,
+      "travel": 1, "enhearten": 2, "persuade": 2, "stealth": 1, "scan": 1, "insight": 2,
+      "explore": 1, "healing": 0, "riddle": 2, "lore": 0, "courtesy": 3, "battle": 0
+    },
+    "favouredSkillChoices": ["courtesy", "persuade"],
+    "combatProficiencies": {
+      "fixed": [{ "skill": "axes", "rank": 2, "or": "spears" }],
+      "freeChoice": 1,
+      "freeRank": 1
+    },
+    "distinctiveFeatureChoices": ["Cunning", "Fair-spoken", "Faithful", "Generous", "Inquisitive", "Patient", "Rustic", "True-hearted"],
+    "startingEquipment": {
+      "weapons": ["Axe", "Spear"],
+      "armour": "Leather Corslet",
+      "gear": ["Travelling Gear"]
+    }
+  },
+  {
+    "id": "rangers",
+    "name": "Rangers of the North",
+    "description": "The Rangers of the North are a secret people, the last descendants of the Dúnedain, who wander in disguise among the ruins of what was once their kingdom of Arnor, tirelessly patrolling its many paths and roads.",
+    "flavorQuote": "…in the wild lands beyond Bree there were mysterious wanderers. The Bree-folk called them Rangers…",
+    "standardOfLiving": "Frugal",
+    "ageRange": [20, 50],
+    "culturalBlessing": {
+      "name": "Kings of Men",
+      "description": "Some say that the lordship of the folk of Arnor is a thing of the past. Yet, the Rangers of the North have inherited the sinews of those Men who wrested the Ring from the burning hand of Sauron. Add 1 point to one Attribute of your choice.",
+      "specialRule": "addOneAttributePoint"
+    },
+    "culturalWeakness": {
+      "name": "Allegiance of the Dúnedain",
+      "description": "During the Fellowship phase (not Yule) you recover a maximum number of Hope points equal to half your HEART score (rounding fractions up)."
+    },
+    "attributeSets": [
+      { "roll": 1, "strength": 7, "heart": 5, "wits": 2 },
+      { "roll": 2, "strength": 7, "heart": 4, "wits": 3 },
+      { "roll": 3, "strength": 6, "heart": 5, "wits": 3 },
+      { "roll": 4, "strength": 6, "heart": 4, "wits": 4 },
+      { "roll": 5, "strength": 5, "heart": 5, "wits": 4 },
+      { "roll": 6, "strength": 6, "heart": 6, "wits": 2 },
+      { "roll": 7, "freeAssign": true }
+    ],
+    "derivedStats": {
+      "endurance": { "formula": "strength + 20", "modifier": 20 },
+      "hope": { "formula": "heart + 6", "modifier": 6 },
+      "parry": { "formula": "wits + 14", "modifier": 14 }
+    },
+    "skills": {
+      "awe": 1, "athletics": 2, "awareness": 2, "hunting": 2, "song": 0, "craft": 0,
+      "travel": 2, "enhearten": 0, "persuade": 0, "stealth": 2, "scan": 1, "insight": 0,
+      "explore": 2, "healing": 2, "riddle": 0, "lore": 2, "courtesy": 0, "battle": 2
+    },
+    "favouredSkillChoices": ["hunting", "awareness"],
+    "combatProficiencies": {
+      "fixed": [{ "skill": "spears", "rank": 2, "or": "swords" }],
+      "freeChoice": 1,
+      "freeRank": 1
+    },
+    "distinctiveFeatureChoices": ["Bold", "Eager", "Fair", "Grim", "Patient", "Secretive", "Stern", "Tall"],
+    "startingEquipment": {
+      "weapons": ["Sword", "Spear"],
+      "armour": "Leather Corslet",
+      "gear": ["Travelling Gear"]
+    }
+  }
+]

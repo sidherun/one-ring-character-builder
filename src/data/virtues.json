@@ -1,0 +1,146 @@
+[
+  {
+    "id": "shadow-lore",
+    "name": "Shadow-lore",
+    "description": "You have made a study of the Enemy's many servants and can identify their weaknesses. You may spend 1 Hope to add your WITS bonus die to an attack roll targeting a creature of Shadow.",
+    "restriction": null
+  },
+  {
+    "id": "durins-way",
+    "name": "Durin's Way",
+    "description": "You are skilled at navigating underground passages and ancient Dwarven halls. You never become lost underground, and may attempt a Riddle roll to find a secret path when none is apparent.",
+    "restriction": { "cultures": ["dwarves"] }
+  },
+  {
+    "id": "redoubtable",
+    "name": "Redoubtable",
+    "description": "Cultural Blessing of the Longbeards. You halve the Load rating of any armour you're wearing (rounding fractions up), including helms (but not shields).",
+    "restriction": { "cultures": ["dwarves"] },
+    "isCulturalBlessing": true
+  },
+  {
+    "id": "resolute",
+    "name": "Resolute",
+    "description": "You have steeled yourself against harm. You may ignore 1 point of Endurance loss when you suffer a Wound.",
+    "restriction": null
+  },
+  {
+    "id": "determined",
+    "name": "Determined",
+    "description": "Once per session, you may re-roll one Body die on any roll.",
+    "restriction": null
+  },
+  {
+    "id": "stout-hearted",
+    "name": "Stout-hearted",
+    "description": "Once per session, you may ignore the Miserable condition for one scene, acting as if you were not Miserable.",
+    "restriction": null
+  },
+  {
+    "id": "confidence",
+    "name": "Confidence",
+    "description": "Your VALOUR rank is added to your starting Endurance.",
+    "restriction": null
+  },
+  {
+    "id": "fair-of-face",
+    "name": "Fair of Face",
+    "description": "You have been gifted with remarkable beauty. Your Awe rolls are Favoured when used in social situations.",
+    "restriction": null
+  },
+  {
+    "id": "quick-of-hearing",
+    "name": "Quick of Hearing",
+    "description": "Your hearing is exceptionally sharp. Your Scan rolls to detect sounds are Favoured.",
+    "restriction": null
+  },
+  {
+    "id": "bold",
+    "name": "Bold",
+    "description": "You are fearless in the face of danger. You may spend Hope to make your VALOUR rolls Favoured.",
+    "restriction": null
+  },
+  {
+    "id": "true-friend",
+    "name": "True Friend",
+    "description": "You have a bond of deep friendship with another character. Once per session you may spend a Fellowship point on their behalf even if you are not present.",
+    "restriction": null
+  },
+  {
+    "id": "hobbit-sense",
+    "name": "Hobbit-sense",
+    "description": "Cultural Blessing. Your WISDOM rolls are Favoured, and you gain an advantage die on all Shadow Tests made to resist the effects of Greed.",
+    "restriction": { "cultures": ["hobbits"] },
+    "isCulturalBlessing": true
+  },
+  {
+    "id": "stout-hearted-bardings",
+    "name": "Stout-hearted",
+    "description": "Cultural Blessing of the Bardings. Your VALOUR rolls are Favoured.",
+    "restriction": { "cultures": ["bardings"] },
+    "isCulturalBlessing": true
+  },
+  {
+    "id": "elven-skill",
+    "name": "Elven-skill",
+    "description": "Cultural Blessing. If you are not Miserable, you can spend 1 point of Hope to achieve a Magical success on a roll when using a Skill in which you possess at least one rank.",
+    "restriction": { "cultures": ["elves"] },
+    "isCulturalBlessing": true
+  },
+  {
+    "id": "bree-blood",
+    "name": "Bree-blood",
+    "description": "Cultural Blessing. Each Man of Bree in the Company increases the Fellowship Rating by 1 point.",
+    "restriction": { "cultures": ["menofbree"] },
+    "isCulturalBlessing": true
+  },
+  {
+    "id": "kings-of-men",
+    "name": "Kings of Men",
+    "description": "Cultural Blessing. Add 1 point to one Attribute of your choice.",
+    "restriction": { "cultures": ["rangers"] },
+    "isCulturalBlessing": true
+  },
+  {
+    "id": "swift-of-foot",
+    "name": "Swift of Foot",
+    "description": "You can move with exceptional speed. Your Athletics rolls for running and chasing are Favoured.",
+    "restriction": null
+  },
+  {
+    "id": "keen-eyed",
+    "name": "Keen-eyed",
+    "description": "Your vision is remarkable. Your Awareness rolls in open terrain are Favoured.",
+    "restriction": null
+  },
+  {
+    "id": "night-goer",
+    "name": "Night-goer",
+    "description": "You can move through darkness without penalty. You may attempt Stealth rolls even in complete darkness.",
+    "restriction": null
+  },
+  {
+    "id": "lord-of-the-hunt",
+    "name": "Lord of the Hunt",
+    "description": "You are a master tracker. Your Hunting rolls are Favoured when tracking prey in the wild.",
+    "restriction": null
+  },
+  {
+    "id": "mithril-coat",
+    "name": "Mithril Coat",
+    "description": "A legendary protection. Once per session, you may avoid one Wound that would otherwise affect you.",
+    "restriction": null
+  },
+  {
+    "id": "stone-hard",
+    "name": "Stone-hard",
+    "description": "Your body has become as resilient as stone. Add +3 to your Endurance.",
+    "restriction": { "cultures": ["dwarves"] }
+  },
+  {
+    "id": "ancient-wisdom",
+    "name": "Ancient Wisdom",
+    "description": "Your long years have given you deep insight. Your Lore rolls are Favoured.",
+    "restriction": { "cultures": ["elves"] }
+  }
+]

@@ -1,0 +1,81 @@
+.pipControl {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(107,85,48,0.2);
+  gap: 8px;
+}
+.pipControl:last-child {
+  border-bottom: none;
+}
+
+.skillName {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  color: var(--text-primary);
+  flex: 1;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.favoured {
+  color: var(--gold-bright);
+  font-style: italic;
+}
+
+.star {
+  color: var(--gold-bright);
+  font-size: 12px;
+  line-height: 1;
+}
+
+.pips {
+  display: flex;
+  gap: 3px;
+  outline: none;
+}
+
+.pips:focus {
+  outline: 1px dashed var(--gold-dim);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.pip {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-dim);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.1s, box-shadow 0.1s;
+}
+
+.pip:hover:not(:disabled) {
+  background: rgba(201,168,76,0.3);
+}
+
+.pip:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+.filled {
+  background: var(--gold-bright);
+  box-shadow: 0 0 4px rgba(201,168,76,0.5);
+}
+
+.empty {
+  background: rgba(20,17,12,0.5);
+}
+
+.valueLabel {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 13px;
+  color: var(--gold-bright);
+  min-width: 16px;
+  text-align: right;
+}

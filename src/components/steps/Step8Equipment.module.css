@@ -1,0 +1,180 @@
+.container { padding: 24px; }
+.heading { font-family: 'Cinzel Decorative', serif; font-size: 20px; color: var(--gold-bright); margin-bottom: 8px; }
+.intro { color: var(--text-secondary); font-size: 14px; margin-bottom: 16px; font-style: italic; }
+.intro strong { color: var(--gold-bright); }
+
+.loadBar {
+  background: rgba(20,17,12,0.7);
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.loadLabel { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--label-text); }
+.loadVal { font-family: 'Cinzel Decorative', serif; font-size: 28px; color: var(--gold-bright); }
+.loadNote { font-family: 'Cinzel', serif; font-size: 13px; color: var(--label-text); letter-spacing: 1px; margin-left: auto; }
+
+.sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.section {
+  background: rgba(20,17,12,0.5);
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  padding: 12px;
+}
+
+.sectionTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 8px;
+}
+
+.select {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 12px;
+}
+
+.weaponsSection {
+  background: rgba(20,17,12,0.3);
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  padding: 14px 16px;
+}
+
+.weaponsSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.btnAdd {
+  padding: 5px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold-dim);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-transform: uppercase;
+}
+.btnAdd:hover { border-color: var(--gold-bright); color: var(--gold-bright); }
+
+.addWeapon {
+  background: rgba(20,17,12,0.5);
+  border: 1px solid rgba(107,85,48,0.3);
+  border-radius: 2px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.addWeaponTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--label-text);
+  margin-bottom: 8px;
+}
+
+.presetList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.presetBtn {
+  padding: 4px 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 1px solid var(--border-ornate);
+  color: var(--text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.15s;
+}
+.presetBtn:hover { border-color: var(--gold-dim); color: var(--gold-dim); }
+
+.customForm {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input {
+  padding: 5px 8px;
+  font-size: 12px;
+  flex: 1;
+  min-width: 80px;
+}
+
+.btnConfirm {
+  padding: 5px 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  background: rgba(138,111,53,0.3);
+  border: 1px solid var(--gold-dim);
+  color: var(--gold-bright);
+  border-radius: 2px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.15s;
+}
+.btnConfirm:hover { background: rgba(201,168,76,0.2); }
+
+.noWeapons {
+  font-size: 13px;
+  color: var(--label-text);
+  font-style: italic;
+  padding: 10px 0;
+}
+
+.weaponList { display: flex; flex-direction: column; gap: 8px; }
+
+.weaponRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(20,17,12,0.5);
+  border: 1px solid rgba(107,85,48,0.3);
+  border-radius: 2px;
+  padding: 10px 12px;
+}
+
+.weaponName { font-family: 'Cinzel', serif; font-size: 13px; color: var(--gold-bright); flex: 1; }
+.weaponStat { font-family: 'Cinzel', serif; font-size: 13px; color: var(--label-text); letter-spacing: 0.5px; }
+.weaponNotes { font-size: 14px; color: var(--label-text); font-style: italic; flex: 1; }
+
+.btnRemove {
+  padding: 2px 8px;
+  font-size: 12px;
+  background: transparent;
+  border: 1px solid rgba(139,32,32,0.4);
+  color: var(--red-shadow);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-left: auto;
+}
+.btnRemove:hover { background: rgba(139,32,32,0.2); }

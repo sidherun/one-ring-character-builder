@@ -1,0 +1,38 @@
+.app {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  background: rgba(16,14,11,0.9);
+  border-bottom: 1px solid rgba(107,85,48,0.5);
+  flex-shrink: 0;
+}
+
+.appTitle {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 13px;
+  color: var(--gold-bright);
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(201,168,76,0.3);
+}
+
+.edition {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}

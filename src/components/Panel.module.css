@@ -1,0 +1,35 @@
+.panel {
+  background: linear-gradient(135deg, rgba(45,40,32,0.95), rgba(35,30,22,0.98));
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(107,85,48,0.3);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.panelTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  padding: 10px 16px 6px;
+  border-bottom: 1px solid rgba(107,85,48,0.4);
+  position: relative;
+  z-index: 1;
+}
+
+.panelContent {
+  padding: 14px 16px;
+  position: relative;
+  z-index: 1;
+}

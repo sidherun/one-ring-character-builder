@@ -1,0 +1,319 @@
+.container { padding: 24px; }
+
+.heading {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 20px;
+  color: var(--gold-bright);
+  margin-bottom: 8px;
+}
+
+.intro {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.setsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.setCard {
+  background: rgba(20,17,12,0.7);
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-primary);
+  position: relative;
+  min-width: 120px;
+}
+
+.setCard:hover {
+  border-color: var(--gold-dim);
+}
+
+.setSelected {
+  border-color: var(--gold-bright);
+  background: rgba(201,168,76,0.08);
+}
+
+.setRoll {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 8px;
+}
+
+.setAttrs {
+  display: flex;
+  gap: 12px;
+}
+
+.setAttr { text-align: center; }
+
+.setAttrLabel {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--label-text);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.setAttrVal {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 18px;
+  color: var(--gold-bright);
+}
+
+.setCheck {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 12px;
+  color: var(--gold-bright);
+}
+
+/* Free-assign (Set 7) styles */
+.setCardFree {
+  border-style: dashed;
+  border-color: var(--gold-dim);
+}
+
+.freeLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-top: 8px;
+  text-align: center;
+}
+
+.freeAssignSection {
+  background: rgba(20,17,12,0.5);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 2px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.freeAssignTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 14px;
+}
+
+.freeAssignRow {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.freeAssignField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.freeAssignLabel {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.freeAssignSelect {
+  background: rgba(20,17,12,0.8);
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  color: var(--gold-bright);
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 20px;
+  padding: 8px 10px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.freeAssignSelect:focus {
+  outline: none;
+  border-color: var(--gold-bright);
+}
+
+.freeAssignHint {
+  font-style: italic;
+  font-size: 12px;
+  color: var(--label-text);
+}
+
+.bonusSection {
+  background: rgba(20,17,12,0.4);
+  border: 1px solid rgba(107,85,48,0.4);
+  border-radius: 2px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+}
+
+.bonusTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+}
+
+.bonusBtns {
+  display: flex;
+  gap: 10px;
+}
+
+.bonusBtn {
+  padding: 6px 16px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 1px solid var(--border-ornate);
+  color: var(--text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-transform: uppercase;
+}
+
+.bonusBtn:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold-dim);
+}
+
+.bonusSelected {
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+  background: rgba(201,168,76,0.1);
+}
+
+.derivedSection {
+  margin-top: 8px;
+}
+
+.derivedTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 12px;
+}
+
+.attrTrio {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.attrCell {
+  padding: 16px 10px;
+  text-align: center;
+  border-right: 1px solid var(--border-ornate);
+}
+.attrCell:last-child { border-right: none; }
+
+.body { background: var(--body-tint); }
+.heart { background: var(--heart-tint); }
+.wits { background: var(--wits-tint); }
+
+.attrName {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.attrSplit {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid rgba(107,85,48,0.3);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.attrHalf {
+  flex: 1;
+  padding: 6px 8px;
+  text-align: center;
+}
+
+.attrDivider {
+  width: 1px;
+  background: rgba(107,85,48,0.4);
+}
+
+.halfLabel {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--label-text);
+  margin-bottom: 4px;
+}
+
+.halfVal {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 22px;
+  color: var(--gold-bright);
+  line-height: 1;
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.statBox {
+  background: rgba(20,17,12,0.7);
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  padding: 10px;
+  text-align: center;
+}
+
+.statLabel {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--label-text);
+  margin-bottom: 6px;
+}
+
+.statVal {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 24px;
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px rgba(201,168,76,0.3);
+}

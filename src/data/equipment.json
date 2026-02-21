@@ -1,0 +1,36 @@
+{
+  "weapons": [
+    { "id": "sword", "name": "Sword", "damage": "5", "injury": "16/18", "load": 2, "notes": "Versatile" },
+    { "id": "short-sword", "name": "Short Sword", "damage": "5", "injury": "16/18", "load": 1, "notes": "One-handed" },
+    { "id": "axe", "name": "Axe", "damage": "5", "injury": "16/18", "load": 2, "notes": "" },
+    { "id": "great-axe", "name": "Great Axe", "damage": "7", "injury": "14/18", "load": 3, "notes": "Two-handed" },
+    { "id": "spear", "name": "Spear", "damage": "5", "injury": "16/18", "load": 2, "notes": "Reach" },
+    { "id": "great-spear", "name": "Great Spear", "damage": "5", "injury": "14/18", "load": 3, "notes": "Two-handed, Reach" },
+    { "id": "bow", "name": "Bow", "damage": "5", "injury": "16/18", "load": 1, "notes": "Ranged, Far" },
+    { "id": "great-bow", "name": "Great Bow", "damage": "5", "injury": "14/18", "load": 2, "notes": "Ranged, Far, Two-handed" },
+    { "id": "dagger", "name": "Dagger", "damage": "3", "injury": "18/18", "load": 0, "notes": "Light" },
+    { "id": "mattock", "name": "Mattock", "damage": "7", "injury": "16/18", "load": 3, "notes": "Two-handed" },
+    { "id": "staff", "name": "Staff", "damage": "3", "injury": "18/18", "load": 1, "notes": "Reach" },
+    { "id": "club", "name": "Club", "damage": "3", "injury": "18/18", "load": 1, "notes": "" },
+    { "id": "cudgel", "name": "Cudgel", "damage": "3", "injury": "18/18", "load": 1, "notes": "" }
+  ],
+  "armour": [
+    { "id": "none", "name": "No Armour", "rating": 0, "load": 0 },
+    { "id": "leather-corslet", "name": "Leather Corslet", "rating": 2, "load": 6 },
+    { "id": "short-coat-of-mail", "name": "Short Coat of Mail", "rating": 3, "load": 12 },
+    { "id": "coat-of-mail", "name": "Coat of Mail", "rating": 4, "load": 16 },
+    { "id": "full-coat-of-mail", "name": "Full Coat of Mail", "rating": 5, "load": 20 }
+  ],
+  "helms": [
+    { "id": "none", "name": "No Helm", "rating": 0, "load": 0 },
+    { "id": "leather-cap", "name": "Leather Cap", "rating": 1, "load": 1 },
+    { "id": "open-helm", "name": "Open Helm", "rating": 2, "load": 2 },
+    { "id": "visored-helm", "name": "Visored Helm", "rating": 3, "load": 3 }
+  ],
+  "shields": [
+    { "id": "none", "name": "No Shield", "parryBonus": 0, "load": 0 },
+    { "id": "buckler", "name": "Buckler", "parryBonus": 1, "load": 2 },
+    { "id": "shield", "name": "Shield", "parryBonus": 2, "load": 3 },
+    { "id": "great-shield", "name": "Great Shield", "parryBonus": 3, "load": 5 }
+  ]
+}

@@ -1,0 +1,68 @@
+.nav {
+  border-top: 1px solid var(--border-ornate);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: rgba(20,17,12,0.4);
+}
+
+.stepCount {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  flex: 1;
+}
+
+.validationMsg {
+  color: #e07070;
+  font-size: 13px;
+  font-style: italic;
+  flex: 1;
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btnPrev, .btnNext {
+  padding: 9px 22px;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.btnPrev {
+  background: transparent;
+  border: 1px solid var(--border-ornate);
+  color: var(--text-secondary);
+}
+
+.btnPrev:hover {
+  border-color: var(--gold-dim);
+  color: var(--text-primary);
+}
+
+.btnNext {
+  background: linear-gradient(135deg, rgba(168,138,69,0.4), rgba(138,111,53,0.2));
+  border: 1px solid var(--gold-dim);
+  color: var(--gold-bright);
+}
+
+.btnNext:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(138,111,53,0.3));
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 10px rgba(201,168,76,0.2);
+}
+
+.btnNext:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

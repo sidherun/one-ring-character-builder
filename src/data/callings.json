@@ -1,0 +1,92 @@
+[
+  {
+    "id": "captain",
+    "name": "Captain",
+    "description": "When the world is on the brink of ruin, it is the duty of all individuals of worth to rise and take the lead, whatever the risk. You have chosen to put your judgement to the service of others, to guide them in this dark hour. But you don't want others to heed your commands out of fear or obedience — you want them to follow you because they trust you.",
+    "shadowPath": "Lure of Power",
+    "shadowPathDescription": "When individuals are given a position of authority, either by rank, lineage, or stature, they may end up mistaking their own aggrandisement for the greater good of the people they should be guiding or keeping safe.",
+    "favouredSkills": ["battle", "enhearten", "persuade"],
+    "favouredSkillCount": 2,
+    "additionalFeature": {
+      "name": "Leadership",
+      "description": "You possess the ability to direct others to action. When under pressure, other people naturally turn to you for guidance."
+    },
+    "startingVirtues": 1,
+    "startingRewards": 1
+  },
+  {
+    "id": "champion",
+    "name": "Champion",
+    "description": "You deem that there is but one way to oppose the return of the Shadow, and that it is to conquer it by strength of arms. You are recognised as a warrior among your folk, a valiant fighter, onward into battle. For you, the road to adventure leads straight to wherever your foes prowl or hide.",
+    "shadowPath": "Curse of Vengeance",
+    "shadowPathDescription": "Individuals who live by the sword are ever tempted to draw it, either literally or figuratively, when their will is crossed.",
+    "favouredSkills": ["athletics", "awe", "hunting"],
+    "favouredSkillCount": 2,
+    "additionalFeature": {
+      "name": "Enemy-lore",
+      "description": "Enemy-lore is not a single Distinctive Feature; you must select the type of enemies it applies to, choosing from Evil Men, Orcs, Spiders, Trolls, Wargs, and Undead. This Distinctive Feature gives you knowledge of the characteristics, habits, strengths, and weaknesses of your chosen enemy."
+    },
+    "startingVirtues": 1,
+    "startingRewards": 1
+  },
+  {
+    "id": "messenger",
+    "name": "Messenger",
+    "description": "In this age, where the spread of knowledge is limited by the dangers of the Road, there is a great need for those who are willing to travel far and bring news and tidings to those who need it most.",
+    "shadowPath": "Wandering-madness",
+    "shadowPathDescription": "Travelling afar might be the duty chosen by a messenger, but it carries the risk of never finding a place to fight for. The Road goes ever on and on, it's true, but whither then?",
+    "favouredSkills": ["courtesy", "song", "travel"],
+    "favouredSkillCount": 2,
+    "additionalFeature": {
+      "name": "Folk-lore",
+      "description": "You possess some knowledge of the many traditional customs, beliefs, and stories of the various communities that compose the Free Peoples. This information may help you when dealing with strangers, allowing you to come up with some useful facts regarding their folk or a smattering of the appropriate language."
+    },
+    "startingVirtues": 1,
+    "startingRewards": 1
+  },
+  {
+    "id": "scholar",
+    "name": "Scholar",
+    "description": "For you, knowledge makes the wild world a less threatening place. Yellowed maps in lost books replace a fear of the unknown with curiosity and wonder, songs composed in ages past strengthen the weariest of hearts. A love of learning guides your every step, and illuminates the way for you and those who listen to your advice.",
+    "shadowPath": "Lure of Secrets",
+    "shadowPathDescription": "Inquisitiveness and curiosity are desirable virtues in an individual, but knowledge can be put to malicious use, and learned individuals can look down on others as ignorant fools. Secrets are dangerous, as the very desire of uncovering them may corrupt the heart.",
+    "favouredSkills": ["craft", "lore", "riddle"],
+    "favouredSkillCount": 2,
+    "additionalFeature": {
+      "name": "Rhymes of Lore",
+      "description": "Rhymes of Lore are short verses created by many Cultures to help them remember significant facts from ancient history which might otherwise be lost. Scholars of Middle-earth credit much of their ancient knowledge to such rhymes."
+    },
+    "startingVirtues": 1,
+    "startingRewards": 1
+  },
+  {
+    "id": "treasurehunter",
+    "name": "Treasure Hunter",
+    "description": "The world has seen the passing of the glory of many Dwarven kings and Elven lords, and their heritage is now buried in Orc-infested dungeons. Hoards of stolen gold and jewels, guarded by fell beasts, beckon all who dare to find them. You seek to recover what is lost, even when it means braving unspeakable dangers.",
+    "shadowPath": "Dragon-sickness",
+    "shadowPathDescription": "Adventurers who find themselves on the Road to seek lost riches run the risk of catching the age-old disease capable of turning a pile of enchanted gold into bitter ashes.",
+    "favouredSkills": ["explore", "scan", "stealth"],
+    "favouredSkillCount": 2,
+    "additionalFeature": {
+      "name": "Burglary",
+      "description": "This venerable talent includes pickpocketing, lock picking and, in general, any shadowy way to get hold of the possessions of others or access protected areas."
+    },
+    "startingVirtues": 1,
+    "startingRewards": 1
+  },
+  {
+    "id": "warden",
+    "name": "Warden",
+    "description": "In this age of the world, when shadows grow deeper with every passing year, you have sworn to defend all who cannot defend themselves. Often, your choice forces you to forsake civilised areas, to better guard their inhabitants from what lurks right outside their fences.",
+    "shadowPath": "Path of Despair",
+    "shadowPathDescription": "Self-doubt is often the way that the Shadow chooses to reach the heart of those who oppose it. For they know that the Enemy is strong and terrible and that those they protect are too naive or weak to fend for themselves.",
+    "favouredSkills": ["awareness", "healing", "insight"],
+    "favouredSkillCount": 2,
+    "additionalFeature": {
+      "name": "Shadow-lore",
+      "description": "You have recognised that there is a hidden thread unifying most of what is malicious, dark, and terrible in Middle-earth, and that the thread is thickening year after year."
+    },
+    "startingVirtues": 1,
+    "startingRewards": 1
+  }
+]

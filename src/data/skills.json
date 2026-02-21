@@ -1,0 +1,34 @@
+{
+  "body": [
+    { "id": "awe", "name": "Awe", "attribute": "body", "description": "Used to impress, intimidate, or inspire reverence in others." },
+    { "id": "athletics", "name": "Athletics", "attribute": "body", "description": "Used for physical feats of speed, strength, or endurance." },
+    { "id": "awareness", "name": "Awareness", "attribute": "body", "description": "Used to notice things in the environment through sight, sound, or smell." },
+    { "id": "hunting", "name": "Hunting", "attribute": "body", "description": "Used to track, hunt, and survive in the wild." },
+    { "id": "song", "name": "Song", "attribute": "body", "description": "Used to perform music, inspire companions, or use the power of song." },
+    { "id": "craft", "name": "Craft", "attribute": "body", "description": "Used to make and repair objects, and to identify craftsmanship." },
+    { "id": "travel", "name": "Travel", "attribute": "body", "description": "Used to endure the hardships of long journeys." }
+  ],
+  "heart": [
+    { "id": "enhearten", "name": "Enhearten", "attribute": "heart", "description": "Used to inspire courage and raise the spirits of companions." },
+    { "id": "battle", "name": "Battle", "attribute": "heart", "description": "Used in warfare and military confrontations." },
+    { "id": "persuade", "name": "Persuade", "attribute": "heart", "description": "Used to convince others through argument, charm, or rhetoric." },
+    { "id": "stealth", "name": "Stealth", "attribute": "heart", "description": "Used to move silently and remain unseen." },
+    { "id": "scan", "name": "Scan", "attribute": "heart", "description": "Used to quickly search an area or spot hidden things at a glance." },
+    { "id": "insight", "name": "Insight", "attribute": "heart", "description": "Used to read people's motivations and understand their feelings." }
+  ],
+  "wits": [
+    { "id": "explore", "name": "Explore", "attribute": "wits", "description": "Used to navigate, find paths, and investigate unknown places." },
+    { "id": "healing", "name": "Healing", "attribute": "wits", "description": "Used to treat wounds and nurse the sick back to health." },
+    { "id": "riddle", "name": "Riddle", "attribute": "wits", "description": "Used to solve puzzles, understand codes, and win contests of wits." },
+    { "id": "lore", "name": "Lore", "attribute": "wits", "description": "Used to recall ancient knowledge, history, and legend." },
+    { "id": "courtesy", "name": "Courtesy", "attribute": "wits", "description": "Used to interact properly with NPCs according to their customs." },
+    { "id": "battle_lore", "name": "Shadow-lore", "attribute": "wits", "description": "Used to understand the nature of Shadow and the Enemy's servants." }
+  ],
+  "combat": [
+    { "id": "axes", "name": "Axes", "attribute": "combat" },
+    { "id": "bows", "name": "Bows", "attribute": "combat" },
+    { "id": "spears", "name": "Spears", "attribute": "combat" },
+    { "id": "swords", "name": "Swords", "attribute": "combat" },
+    { "id": "knives", "name": "Knives", "attribute": "combat" }
+  ]
+}

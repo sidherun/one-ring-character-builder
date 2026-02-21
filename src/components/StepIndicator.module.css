@@ -1,0 +1,61 @@
+.indicator {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: center;
+  padding: 12px 20px;
+  background: rgba(20,17,12,0.6);
+  border-bottom: 1px solid var(--border-ornate);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid rgba(107,85,48,0.3);
+  border-radius: 2px;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+  min-width: 60px;
+}
+
+.step:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.step:not(:disabled):hover {
+  border-color: var(--gold-dim);
+  color: var(--text-primary);
+}
+
+.current {
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+  background: rgba(201,168,76,0.08);
+}
+
+.completed {
+  border-color: var(--gold-dim);
+  color: var(--text-secondary);
+}
+
+.completed:hover {
+  cursor: pointer;
+}
+
+.stepNum {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.stepName {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}

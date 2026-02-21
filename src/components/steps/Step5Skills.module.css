@@ -1,0 +1,142 @@
+.container { padding: 24px; }
+
+.heading {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 20px;
+  color: var(--gold-bright);
+  margin-bottom: 8px;
+}
+
+.intro {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.intro strong { color: var(--gold-bright); }
+
+.cultureChoice {
+  background: rgba(20,17,12,0.5);
+  border: 1px solid rgba(107,85,48,0.4);
+  border-radius: 2px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+.cultureChoiceTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 8px;
+}
+
+.cultureChoiceOptions {
+  display: flex;
+  gap: 10px;
+}
+
+.cultureChoiceBtn {
+  padding: 5px 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 1px solid var(--border-ornate);
+  color: var(--text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-transform: uppercase;
+}
+
+.cultureChoiceBtn:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold-dim);
+}
+
+.chosen {
+  border-color: var(--gold-bright);
+  color: var(--gold-bright);
+  background: rgba(201,168,76,0.1);
+}
+
+.poolStatus {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.pool {
+  flex: 1;
+  background: rgba(20,17,12,0.5);
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  padding: 10px 14px;
+}
+
+.poolOver {
+  border-color: #c04040;
+}
+
+.poolLabel {
+  display: block;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--label-text);
+  margin-bottom: 4px;
+}
+
+.poolVal {
+  display: block;
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 18px;
+  color: var(--gold-bright);
+  margin-bottom: 6px;
+}
+
+.poolBar {
+  height: 3px;
+  background: rgba(107,85,48,0.3);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.poolFill {
+  height: 100%;
+  transition: width 0.2s;
+  border-radius: 2px;
+}
+
+.skillsLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.skillGroup {
+  background: linear-gradient(135deg, rgba(45,40,32,0.95), rgba(35,30,22,0.98));
+  border: 1px solid var(--border-ornate);
+  border-radius: 2px;
+  padding: 14px 16px;
+}
+
+.body { border-top: 2px solid rgba(180,130,50,0.5); }
+.heart { border-top: 2px solid rgba(140,50,50,0.6); }
+.wits { border-top: 2px solid rgba(50,80,140,0.5); }
+.combat { border-top: 2px solid rgba(130,50,50,0.6); }
+
+.groupTitle {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-dim);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(107,85,48,0.3);
+}
