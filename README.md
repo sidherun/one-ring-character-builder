@@ -130,4 +130,10 @@ The app deploys automatically to GitHub Pages on every push to `main` via `.gith
 
 ---
 
+---
+
+See [CHANGELOG.md](CHANGELOG.md) for a full history of releases and changes.
+
+---
+
 *This is an unofficial fan tool. The One Ring is © Sophisticated Games Ltd & Free League Publishing. No copyrighted game text is reproduced.*
