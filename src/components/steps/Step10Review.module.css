@@ -559,6 +559,46 @@
   border-bottom: 1px solid rgba(107,85,48,0.3);
 }
 
+.trackingRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.trackingInput {
+  width: 64px;
+  padding: 4px 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: var(--gold-bright);
+  background: rgba(20,17,12,0.7);
+  border: 1px solid rgba(107,85,48,0.5);
+  border-radius: 2px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  /* hide number spin arrows */
+  -moz-appearance: textfield;
+}
+.trackingInput::-webkit-outer-spin-button,
+.trackingInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.trackingInput:focus {
+  border-color: var(--gold-dim);
+  box-shadow: 0 0 8px rgba(201,168,76,0.15);
+}
+
+.trackingMax {
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
 /* Print styles */
 @media print {
   .exportBar { display: none; }
@@ -570,4 +610,13 @@
     color: black;
   }
   body { background: white; color: black; }
+  .trackingInput {
+    color: black;
+    background: white;
+    border: none;
+    border-bottom: 1px solid #999;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .trackingMax { color: #666; }
 }

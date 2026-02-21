@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback, useEffect } from 'react';
 import styles from './Step10Review.module.css';
 import cultures from '../../data/cultures.json';
 import callings from '../../data/callings.json';
@@ -7,6 +7,16 @@ import features from '../../data/features.json';
 import equipmentData from '../../data/equipment.json';
 import { deriveStats } from '../../utils/characterDerived';
 import { encodeCharacterToHash } from '../../utils/urlState';
+import { saveCharacterToRoster } from '../../utils/rosterStorage';
+
+const TRACKING_FIELDS = [
+  { key: 'currentEndurance', label: 'Current Endurance', defaultFn: (d) => d.endurance, min: 0, max: 40, showMax: true },
+  { key: 'currentHope',      label: 'Current Hope',      defaultFn: (d) => d.hope,      min: 0, max: 30, showMax: true },
+  { key: 'currentShadow',    label: 'Current Shadow',    defaultFn: () => 0,             min: 0, max: 30 },
+  { key: 'fellowshipPoints', label: 'Fellowship Points', defaultFn: () => 0,             min: 0, max: 99 },
+  { key: 'adventurePoints',  label: 'Adventure Points',  defaultFn: () => 0,             min: 0, max: 99 },
+  { key: 'treasurePoints',   label: 'Treasure Points',   defaultFn: () => 0,             min: 0, max: 99 },
+];
 
 const SKILL_LABELS = {
   awe: 'Awe', athletics: 'Athletics', awareness: 'Awareness', hunting: 'Hunting',
@@ -37,7 +47,7 @@ function PipRow({ value, max = 6 }) {
   );
 }
 
-export default function Step10Review({ character, onSaveToRoster, onViewRoster }) {
+export default function Step10Review({ character, onSaveToRoster, onViewRoster, onChange }) {
   const culture = cultures.find(c => c.id === character.cultureId);
   const calling = callings.find(c => c.id === character.callingId);
 
@@ -108,6 +118,29 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster }
       setTimeout(() => setSavedToRoster(false), 2500);
     }
   }, [onSaveToRoster]);
+
+  // Tracking field helpers
+  const tracking = character._tracking || {};
+  const getTrackingValue = useCallback((field) => {
+    if (tracking[field.key] !== undefined && tracking[field.key] !== null) {
+      return tracking[field.key];
+    }
+    return field.defaultFn(derived);
+  }, [tracking, derived]);
+
+  const handleTrackingChange = useCallback((key, value) => {
+    const numVal = value === '' ? 0 : Math.max(0, Number(value));
+    const updated = { ...tracking, [key]: numVal };
+    if (onChange) onChange({ _tracking: updated });
+  }, [tracking, onChange]);
+
+  // Auto-save to roster whenever tracking values change (only if already in roster)
+  useEffect(() => {
+    if (character._rosterId && character._tracking) {
+      saveCharacterToRoster(character);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [character._tracking]);
 
   if (!culture || !calling) return <div className={styles.container}><p>Please complete all steps first.</p></div>;
 
@@ -352,10 +385,22 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster }
         <div className={styles.trackingSection}>
           <div className={styles.panelTitle}>In-Play Tracking</div>
           <div className={styles.trackingGrid}>
-            {['Current Endurance', 'Current Hope', 'Current Shadow', 'Fellowship Points', 'Adventure Points', 'Treasure Points'].map(t => (
-              <div key={t} className={styles.trackingField}>
-                <span className={styles.trackingLabel}>{t}</span>
-                <span className={styles.trackingBox} />
+            {TRACKING_FIELDS.map(field => (
+              <div key={field.key} className={styles.trackingField}>
+                <span className={styles.trackingLabel}>{field.label}</span>
+                <div className={styles.trackingRow}>
+                  <input
+                    type="number"
+                    className={styles.trackingInput}
+                    value={getTrackingValue(field)}
+                    min={field.min}
+                    max={field.max}
+                    onChange={e => handleTrackingChange(field.key, e.target.value)}
+                  />
+                  {field.showMax && (
+                    <span className={styles.trackingMax}>/ {field.defaultFn(derived)}</span>
+                  )}
+                </div>
               </div>
             ))}
           </div>
