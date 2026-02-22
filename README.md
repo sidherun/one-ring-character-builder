@@ -40,7 +40,7 @@ The final step renders a full formatted character sheet with:
 - Backstory
 
 ### Play Mode
-A **▶ Play** button in the top bar is always visible. Once the character sheet is complete it jumps directly to the character sheet from any step in the wizard, making it quick to switch between editing and playing without losing your place. The button is greyed out and shows a tooltip until step 9 is finished.
+A **▶ Play** button sits permanently in the top bar (disabled until step 9 is complete). Clicking it jumps to the character sheet and enters Play mode — the step indicator and bottom navigation bar are hidden to prevent accidental edits during a session. The button turns green and changes to **⏸ Pause**; clicking it exits Play mode and re-enables all navigation. Play mode is session-only and resets on reload.
 
 ### In-Play Tracking
 At the bottom of the character sheet, six live tracking fields let you manage your character's state during a session:

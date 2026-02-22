@@ -8,10 +8,10 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
-## 2026-02-21 — Play button
+## 2026-02-21 — Play / Pause mode
 
 ### Added
-- **Play button in the top bar** — always visible on the right side of the banner, next to "Second Edition". Jumps directly to the character sheet (step 10) from any step. Disabled (greyed out with a tooltip) until the character has completed at least step 9; enabled as soon as the sheet is ready.
+- **Play / Pause toggle in the top bar** — the `▶ Play` button (gold) jumps to the character sheet and enters Play mode: the StepIndicator and WizardNav are hidden entirely, locking navigation to prevent accidental edits during a session. The button turns green and reads `⏸ Pause`; clicking it re-enables navigation and returns to normal editing mode. The button is disabled until step 9 is complete. Play mode is session-only and resets on reload.
 
 ---
 

@@ -101,6 +101,7 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
   const [character, setCharacter] = useState(createDefaultCharacter());
   const [hasSaved, setHasSaved] = useState(false);
   const [showRestorePrompt, setShowRestorePrompt] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   // Load a character from the roster when Router passes one in
   useEffect(() => {
@@ -151,11 +152,15 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
   };
 
   const handlePrev = () => {
-    if (step > 1) setStep(step - 1);
+    if (step > 1) {
+      setStep(step - 1);
+      setIsPlaying(false);
+    }
   };
 
   const handleNavigate = (targetStep) => {
     setStep(targetStep);
+    if (targetStep !== 10) setIsPlaying(false);
   };
 
   const handleStart = () => {
@@ -248,18 +253,25 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
         <div className={styles.topBarRight}>
           <button
             type="button"
-            className={styles.btnPlay}
-            onClick={() => handleNavigate(10)}
+            className={`${styles.btnPlay} ${isPlaying ? styles.btnPlaying : ''}`}
+            onClick={() => {
+              if (!isPlaying) {
+                handleNavigate(10);
+                setIsPlaying(true);
+              } else {
+                setIsPlaying(false);
+              }
+            }}
             disabled={!completedSteps.includes(9)}
-            title={!completedSteps.includes(9) ? 'Complete character creation to enter Play mode' : 'Go to character sheet'}
+            title={!completedSteps.includes(9) ? 'Complete character creation to enter Play mode' : isPlaying ? 'Pause — return to editing' : 'Enter Play mode'}
           >
-            ▶ Play
+            {isPlaying ? '⏸ Pause' : '▶ Play'}
           </button>
           <span className={styles.edition}>Second Edition</span>
         </div>
       </div>
 
-      {step > 1 && (
+      {step > 1 && !isPlaying && (
         <StepIndicator
           currentStep={step}
           completedSteps={completedSteps}
@@ -271,7 +283,7 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
         {renderStep()}
       </div>
 
-      {step > 1 && (
+      {step > 1 && !isPlaying && (
         <WizardNav
           step={step}
           totalSteps={TOTAL_STEPS}

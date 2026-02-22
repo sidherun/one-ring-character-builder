@@ -65,6 +65,20 @@
   background: transparent;
 }
 
+/* Active play mode — green tint to signal locked state */
+.btnPlaying {
+  background: linear-gradient(135deg, rgba(60,100,70,0.5), rgba(40,75,55,0.35));
+  border-color: #5a9e72;
+  color: #8ecfa4;
+}
+
+.btnPlaying:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(80,130,95,0.5), rgba(55,100,75,0.4));
+  box-shadow: 0 0 12px rgba(90,158,114,0.25);
+  border-color: #7abf90;
+  color: #a8dfb8;
+}
+
 .content {
   flex: 1;
   overflow-y: auto;
