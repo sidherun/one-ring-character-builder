@@ -8,6 +8,7 @@ import equipmentData from '../../data/equipment.json';
 import { deriveStats } from '../../utils/characterDerived';
 import { encodeCharacterToHash } from '../../utils/urlState';
 import { saveCharacterToRoster } from '../../utils/rosterStorage';
+import { generateCharacterHTML } from '../../utils/generateCharacterHTML';
 
 const TRACKING_FIELDS = [
   { key: 'currentEndurance', label: 'Current Endurance', defaultFn: (d) => d.endurance, min: 0, max: 40, showMax: true },
@@ -82,94 +83,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
   const totalArmour = (eq.armourRating || 0) + (eq.helmRating || 0);
 
   const handleExportHTML = () => {
-    // Collect all live stylesheet rules (CSS Modules classes + global styles)
-    let collectedCSS = '';
-    for (const sheet of document.styleSheets) {
-      try {
-        for (const rule of sheet.cssRules) {
-          collectedCSS += rule.cssText + '\n';
-        }
-      } catch {
-        // Cross-origin sheets (Google Fonts CDN) can't be read — handled via <link> instead
-      }
-    }
-
-    // Grab the rendered sheet markup by its stable id
-    const sheetEl = document.getElementById('character-sheet');
-    const sheetHTML = sheetEl ? sheetEl.outerHTML : '<p>Character sheet not found.</p>';
-
-    const fullHTML = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${id.name || 'Character'} \u2014 The One Ring</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --stone-dark: #1a1714;
-      --stone-mid: #2d2820;
-      --stone-light: #3d3428;
-      --stone-surface: #4a3f30;
-      --gold-bright: #c9a84c;
-      --gold-dim: #a88a45;
-      --gold-pale: #e8d08a;
-      --rune-glow: #d4a843;
-      --text-primary: #e8dcc8;
-      --text-secondary: #c8ad88;
-      --text-dim: #9a8a6a;
-      --label-text: #b0a080;
-      --red-shadow: #8b2020;
-      --copper: #a0522d;
-      --border-ornate: #6b5530;
-      --body-tint: rgba(40,30,12,0.85);
-      --heart-tint: rgba(35,15,15,0.85);
-      --wits-tint: rgba(15,20,30,0.85);
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: var(--stone-dark);
-      background-image:
-        radial-gradient(ellipse at 20% 20%, rgba(42,35,25,0.8) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(30,24,16,0.9) 0%, transparent 60%);
-      font-family: 'IM Fell English', serif;
-      color: var(--text-primary);
-      line-height: 1.5;
-      padding: 24px;
-    }
-    /* Render tracking number inputs as plain styled values */
-    input[type="number"] {
-      -webkit-appearance: none;
-      -moz-appearance: textfield;
-      border: none;
-      border-bottom: 1px solid var(--gold-dim);
-      border-radius: 0;
-      background: transparent;
-      color: var(--gold-bright);
-      font-family: 'Cinzel', serif;
-      font-size: 18px;
-      font-weight: bold;
-      text-align: center;
-      width: 64px;
-      padding: 2px 4px;
-      pointer-events: none;
-    }
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
-    /* All hashed CSS Module class styles from the live page */
-${collectedCSS}
-  </style>
-</head>
-<body>
-  ${sheetHTML}
-  <p style="margin-top:24px;text-align:center;font-family:'Cinzel',serif;font-size:11px;color:#9a8a6a;letter-spacing:1px;text-transform:uppercase;">
-    Exported from The One Ring Character Builder &mdash; Second Edition
-  </p>
-</body>
-</html>`;
-
+    const fullHTML = generateCharacterHTML(character);
     const blob = new Blob([fullHTML], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
