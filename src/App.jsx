@@ -271,7 +271,6 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
           >
             {isPlaying ? '⏸ Pause' : '▶ Play'}
           </button>
-          <span className={styles.edition}>Second Edition</span>
         </div>
       </div>
 
