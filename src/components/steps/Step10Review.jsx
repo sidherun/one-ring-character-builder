@@ -54,7 +54,7 @@ function PipRow({ value, max = 6 }) {
   );
 }
 
-export default function Step10Review({ character, onSaveToRoster, onViewRoster, onChange }) {
+export default function Step10Review({ character, onSaveToRoster, onViewRoster, onChange, isPlaying }) {
   const culture = cultures.find(c => c.id === character.cultureId);
   const calling = callings.find(c => c.id === character.callingId);
 
@@ -305,10 +305,11 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                 <span className={styles.splitLabel}>Current</span>
                 <input
                   type="number"
-                  className={`${styles.splitVal} ${styles.splitInput}`}
+                  className={`${styles.splitVal} ${styles.splitInput} ${isPlaying ? styles.splitInputDisabled : ''}`}
                   value={getTrackingValue(TRACKING_FIELDS[1])}
                   min={0}
                   max={derived.hope}
+                  disabled={isPlaying}
                   onChange={e => handleTrackingChange('currentHope', e.target.value)}
                   onBlur={e => handleTrackingBlur('currentHope', e.target.value)}
                 />

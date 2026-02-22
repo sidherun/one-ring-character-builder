@@ -244,7 +244,7 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
       case 9:
         return <Step9Identity character={character} onChange={updateCharacter} />;
       case 10:
-        return <Step10Review character={character} onSaveToRoster={handleSaveToRoster} onViewRoster={onNavigateToRoster} onChange={updateCharacter} />;
+        return <Step10Review character={character} onSaveToRoster={handleSaveToRoster} onViewRoster={onNavigateToRoster} onChange={updateCharacter} isPlaying={isPlaying} />;
       default:
         return null;
     }

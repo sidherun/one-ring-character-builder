@@ -346,6 +346,18 @@
   box-shadow: 0 2px 6px rgba(201,168,76,0.15);
 }
 
+/* Play mode — Hope Current field is read-only; driven by In-Play Tracking */
+.splitInputDisabled {
+  color: rgba(107,85,48,0.5);
+  border-bottom-color: rgba(107,85,48,0.2);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.splitInputDisabled:focus {
+  border-bottom-color: rgba(107,85,48,0.2);
+  box-shadow: none;
+}
+
 .threshold {
   font-family: 'Cinzel', serif;
   font-size: 12px;

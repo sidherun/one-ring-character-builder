@@ -8,6 +8,14 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-21 — Hope Current greyed out in Play mode
+
+### Changed
+- **Hope panel Current field** is disabled and visually greyed out when Play mode is active — it reflects the In-Play Tracking value but cannot be edited directly; updates must come through the tracking grid
+- Re-enables fully when Play is paused
+
+---
+
 ## 2026-02-21 — Hope Current panel synced to In-Play Tracking
 
 ### Fixed
