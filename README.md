@@ -36,7 +36,7 @@ The final step renders a full formatted character sheet with:
 - Skill pip display with favoured skill indicators (★)
 - Combat Proficiencies
 - Cultural Blessing, Virtues, and Distinctive Features
-- Equipment summary with ratings and load
+- Equipment summary with ratings and load (Dwarves of Durin's Folk automatically apply the **Redoubtable** blessing: armour and helm load are halved, rounded up)
 - Backstory
 
 ### Play Mode
