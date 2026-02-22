@@ -60,7 +60,7 @@ A secondary page (accessible from the welcome screen or the review page) stores 
 ### Export Options
 From the character sheet you can:
 - **Print / Save as PDF** via the browser print dialog
-- **Download HTML** — a self-contained snapshot of the rendered sheet
+- **Download HTML** — a fully self-contained file with all styles, fonts, and colours embedded; opens correctly in any browser without an internet connection
 - **Save as JSON** — the full character object for backup or import
 - **Copy Share URL** — a compressed URL that encodes the character; anyone with the link can view the sheet
 - **Save to Roster** — persists the character to browser localStorage

@@ -8,6 +8,13 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-21 — HTML export fix
+
+### Fixed
+- **Download HTML was unstyled** — the export was capturing `document.documentElement.outerHTML`, which includes only a `<link>` tag pointing to the bundled CSS file on the server. When opened offline the stylesheet was unavailable, so no colours or layout were applied. The export now collects all live CSS rules from the page's active stylesheets (which include the resolved hashed CSS Module class names) and embeds them directly in a `<style>` block, alongside the CSS custom properties and a Google Fonts `<link>`. The exported file is fully self-contained and renders identically to the in-app view.
+
+---
+
 ## 2026-02-21 — Play / Pause mode
 
 ### Added
