@@ -8,6 +8,17 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-21 — Semantic load status on Armour & Load panel
+
+### Added
+- **Total Load now shows a contextual badge** based on TOR2E rules: a character becomes **Weary** when their current Endurance falls to or below their Load. The badge reads:
+  - **Weary** (red) — current tracked Endurance ≤ Load
+  - **Weary on next hit** (amber) — current Endurance is exactly 1 above Load
+  - No badge — character is safely above the threshold
+- Current Endurance is read from the in-play tracking value if set, falling back to the derived maximum.
+
+---
+
 ## 2026-02-21 — Fix tracking input editing
 
 ### Fixed

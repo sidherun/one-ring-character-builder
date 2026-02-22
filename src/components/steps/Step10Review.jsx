@@ -89,6 +89,26 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
   const id = character.identity || {};
   const totalArmour = (eq.armourRating || 0) + (eq.helmRating || 0);
 
+  // Total Load = armour + helm + shield + weapons (per TOR2E rules)
+  const totalLoad = (eq.armourLoad || 0) + (eq.helmLoad || 0) + (eq.shieldLoad || 0)
+    + (eq.weapons || []).reduce((s, w) => s + (Number(w.load) || 0), 0);
+
+  // Current endurance from tracking (falls back to derived max if not yet tracked)
+  const currentEndurance = tracking.currentEndurance !== undefined && tracking.currentEndurance !== null
+    ? Number(tracking.currentEndurance)
+    : derived.endurance;
+
+  // Semantic load status per TOR2E rules:
+  // Weary = current Endurance ≤ Load
+  const getLoadStatus = (load, currEnd) => {
+    if (load === 0) return null;
+    if (currEnd <= load) return { label: 'Weary', danger: true };
+    // Warn if one point of damage would cause Weary
+    if (currEnd - load === 1) return { label: 'Weary on next hit', danger: false };
+    return null;
+  };
+  const loadStatus = getLoadStatus(totalLoad, currentEndurance);
+
   const handleExportHTML = () => {
     const fullHTML = generateCharacterHTML(character);
     const blob = new Blob([fullHTML], { type: 'text/html' });
@@ -420,7 +440,17 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
             <div className={styles.eqStat}><span>Armour</span><span>{equipmentData.armour.find(a => a.id === (eq.armourId || 'none'))?.name || 'No Armour'} (Rating {eq.armourRating || 0})</span></div>
             <div className={styles.eqStat}><span>Helm</span><span>{equipmentData.helms.find(h => h.id === (eq.helmId || 'none'))?.name || 'No Helm'} (Rating {eq.helmRating || 0})</span></div>
             <div className={styles.eqStat}><span>Shield</span><span>{equipmentData.shields.find(s => s.id === (eq.shieldId || 'none'))?.name || 'No Shield'} (Parry +{eq.shieldParryBonus || 0})</span></div>
-            <div className={styles.eqStat}><span>Total Load</span><strong>{(eq.armourLoad || 0) + (eq.helmLoad || 0) + (eq.shieldLoad || 0) + (eq.weapons || []).reduce((s, w) => s + (Number(w.load) || 0), 0)}</strong></div>
+            <div className={styles.eqStat}>
+              <span>Total Load</span>
+              <span className={styles.loadValue}>
+                <strong>{totalLoad}</strong>
+                {loadStatus && (
+                  <span className={loadStatus.danger ? styles.loadWeary : styles.loadWarning}>
+                    {loadStatus.label}
+                  </span>
+                )}
+              </span>
+            </div>
           </div>
         </div>
 

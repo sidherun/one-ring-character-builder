@@ -524,6 +524,36 @@
 .eqStat:last-child { border-bottom: none; }
 .eqStat strong { color: var(--gold-bright); }
 
+.loadValue {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Weary = current Endurance ≤ Load (red, danger) */
+.loadWeary {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #c05050;
+  border: 1px solid rgba(192,80,80,0.4);
+  border-radius: 2px;
+  padding: 1px 5px;
+}
+
+/* Warning = one point away from Weary (amber) */
+.loadWarning {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #c09030;
+  border: 1px solid rgba(192,144,48,0.4);
+  border-radius: 2px;
+  padding: 1px 5px;
+}
+
 /* Backstory */
 .backstoryPanel {
   background: linear-gradient(135deg, rgba(45,40,32,0.95), rgba(35,30,22,0.98));
