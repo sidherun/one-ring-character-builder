@@ -89,6 +89,9 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
   const id = character.identity || {};
   const totalArmour = (eq.armourRating || 0) + (eq.helmRating || 0);
 
+  // Must be declared before totalLoad/loadStatus which depend on it
+  const tracking = character._tracking || {};
+
   // Total Load = armour + helm + shield + weapons (per TOR2E rules)
   const totalLoad = (eq.armourLoad || 0) + (eq.helmLoad || 0) + (eq.shieldLoad || 0)
     + (eq.weapons || []).reduce((s, w) => s + (Number(w.load) || 0), 0);
@@ -148,8 +151,6 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
   }, [onSaveToRoster]);
 
   // Tracking field helpers
-  const tracking = character._tracking || {};
-
   // Local display state lets inputs show intermediate strings (e.g. '' while user clears to retype)
   const [trackingDisplay, setTrackingDisplay] = useState({});
 
