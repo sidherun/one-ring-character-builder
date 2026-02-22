@@ -245,7 +245,18 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
     <div className={styles.app}>
       <div className={styles.topBar}>
         <span className={styles.appTitle}>The One Ring · Character Builder</span>
-        <span className={styles.edition}>Second Edition</span>
+        <div className={styles.topBarRight}>
+          <button
+            type="button"
+            className={styles.btnPlay}
+            onClick={() => handleNavigate(10)}
+            disabled={!completedSteps.includes(9)}
+            title={!completedSteps.includes(9) ? 'Complete character creation to enter Play mode' : 'Go to character sheet'}
+          >
+            ▶ Play
+          </button>
+          <span className={styles.edition}>Second Edition</span>
+        </div>
       </div>
 
       {step > 1 && (

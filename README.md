@@ -39,6 +39,9 @@ The final step renders a full formatted character sheet with:
 - Equipment summary with ratings and load
 - Backstory
 
+### Play Mode
+A **▶ Play** button in the top bar is always visible. Once the character sheet is complete it jumps directly to the character sheet from any step in the wizard, making it quick to switch between editing and playing without losing your place. The button is greyed out and shows a tooltip until step 9 is finished.
+
 ### In-Play Tracking
 At the bottom of the character sheet, six live tracking fields let you manage your character's state during a session:
 - **Current Endurance** (pre-filled from derived max)

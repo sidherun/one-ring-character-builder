@@ -8,6 +8,13 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-21 — Play button
+
+### Added
+- **Play button in the top bar** — always visible on the right side of the banner, next to "Second Edition". Jumps directly to the character sheet (step 10) from any step. Disabled (greyed out with a tooltip) until the character has completed at least step 9; enabled as soon as the sheet is ready.
+
+---
+
 ## 2026-02-21 (patch)
 
 ### Fixed
