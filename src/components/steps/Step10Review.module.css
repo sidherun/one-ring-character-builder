@@ -321,6 +321,31 @@
   color: var(--gold-bright);
 }
 
+/* Input variant of splitVal — used for Hope Current / Shadow fields */
+.splitInput {
+  display: block;
+  width: 80px;
+  margin: 0 auto;
+  padding: 2px 4px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(107,85,48,0.5);
+  border-radius: 0;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -moz-appearance: textfield;
+}
+.splitInput::-webkit-outer-spin-button,
+.splitInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.splitInput:focus {
+  border-bottom-color: var(--gold-dim);
+  box-shadow: 0 2px 6px rgba(201,168,76,0.15);
+}
+
 .threshold {
   font-family: 'Cinzel', serif;
   font-size: 12px;

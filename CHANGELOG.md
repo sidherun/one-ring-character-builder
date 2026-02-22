@@ -8,6 +8,13 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-21 — Interactive Hope / Shadow fields
+
+### Changed
+- **Hope Current** and **Shadow Total / Permanent** are now editable number inputs, consistent with the In-Play Tracking section. Hope Current pre-fills from the derived Hope max. All three persist to the roster via the existing `_tracking` auto-save mechanism. The HTML export renders their saved values as static styled numbers.
+
+---
+
 ## 2026-02-21 — HTML export fix (v2)
 
 ### Fixed

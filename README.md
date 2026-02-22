@@ -43,12 +43,16 @@ The final step renders a full formatted character sheet with:
 A **▶ Play** button sits permanently in the top bar (disabled until step 9 is complete). Clicking it jumps to the character sheet and enters Play mode — the step indicator and bottom navigation bar are hidden to prevent accidental edits during a session. The button turns green and changes to **⏸ Pause**; clicking it exits Play mode and re-enables all navigation. Play mode is session-only and resets on reload.
 
 ### In-Play Tracking
-At the bottom of the character sheet, six live tracking fields let you manage your character's state during a session:
-- **Current Endurance** (pre-filled from derived max)
-- **Current Hope** (pre-filled from derived max)
-- **Current Shadow** · **Fellowship Points** · **Adventure Points** · **Treasure Points**
+The character sheet has interactive fields for tracking session state:
 
-Values auto-save to the roster whenever a character has been saved there — no button needed.
+**Hope / Shadow panel** (mid-sheet):
+- **Hope Current** (pre-filled from derived max) · **Shadow Total** · **Shadow Permanent**
+
+**In-Play Tracking section** (bottom of sheet):
+- **Current Endurance** (pre-filled from derived max) · **Current Hope** · **Current Shadow**
+- **Fellowship Points** · **Adventure Points** · **Treasure Points**
+
+All values auto-save to the roster whenever a character has been saved there — no button needed.
 
 ### Character Roster
 A secondary page (accessible from the welcome screen or the review page) stores all your saved characters in browser localStorage. From the roster you can:

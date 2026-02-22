@@ -17,6 +17,10 @@ const TRACKING_FIELDS = [
   { key: 'fellowshipPoints', label: 'Fellowship Points', defaultFn: () => 0,             min: 0, max: 99 },
   { key: 'adventurePoints',  label: 'Adventure Points',  defaultFn: () => 0,             min: 0, max: 99 },
   { key: 'treasurePoints',   label: 'Treasure Points',   defaultFn: () => 0,             min: 0, max: 99 },
+  // Hope / Shadow panel fields
+  { key: 'hopeCurrent',      label: 'Hope Current',      defaultFn: (d) => d.hope,      min: 0, max: 30 },
+  { key: 'shadowTotal',      label: 'Shadow Total',      defaultFn: () => 0,             min: 0, max: 30 },
+  { key: 'shadowPermanent',  label: 'Shadow Permanent',  defaultFn: () => 0,             min: 0, max: 30 },
 ];
 
 const SKILL_LABELS = {
@@ -253,7 +257,14 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
               </div>
               <div className={styles.splitHalf}>
                 <span className={styles.splitLabel}>Current</span>
-                <span className={styles.splitVal}>____</span>
+                <input
+                  type="number"
+                  className={`${styles.splitVal} ${styles.splitInput}`}
+                  value={getTrackingValue(TRACKING_FIELDS.find(f => f.key === 'hopeCurrent'))}
+                  min={0}
+                  max={derived.hope}
+                  onChange={e => handleTrackingChange('hopeCurrent', e.target.value)}
+                />
               </div>
             </div>
             <div className={styles.threshold}>Miserable threshold: {derived.miserableThreshold}</div>
@@ -263,11 +274,25 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
             <div className={styles.splitStat}>
               <div className={styles.splitHalf}>
                 <span className={styles.splitLabel}>Total</span>
-                <span className={styles.splitVal}>____</span>
+                <input
+                  type="number"
+                  className={`${styles.splitVal} ${styles.splitInput}`}
+                  value={getTrackingValue(TRACKING_FIELDS.find(f => f.key === 'shadowTotal'))}
+                  min={0}
+                  max={99}
+                  onChange={e => handleTrackingChange('shadowTotal', e.target.value)}
+                />
               </div>
               <div className={styles.splitHalf}>
                 <span className={styles.splitLabel}>Permanent</span>
-                <span className={styles.splitVal}>____</span>
+                <input
+                  type="number"
+                  className={`${styles.splitVal} ${styles.splitInput}`}
+                  value={getTrackingValue(TRACKING_FIELDS.find(f => f.key === 'shadowPermanent'))}
+                  min={0}
+                  max={99}
+                  onChange={e => handleTrackingChange('shadowPermanent', e.target.value)}
+                />
               </div>
             </div>
           </div>

@@ -194,7 +194,15 @@ export function generateCharacterHTML(character) {
         </div>`).join('')}
     </div>`;
 
-  // Hope & Shadow panels
+  // Hope & Shadow panels — show tracked values from _tracking
+  const hopeCurrent     = tracking.hopeCurrent     ?? derived.hope;
+  const shadowTotal     = tracking.shadowTotal     ?? 0;
+  const shadowPermanent = tracking.shadowPermanent ?? 0;
+
+  function splitVal(value) {
+    return `<div style="font-family:'Cinzel Decorative',serif;font-size:22px;color:${C.goldBright};border-bottom:1px solid rgba(107,85,48,0.4);display:inline-block;min-width:48px;text-align:center;">${value}</div>`;
+  }
+
   const hopeShadow = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
       <div style="border:1px solid ${C.borderOrnate};border-radius:2px;overflow:hidden;">
@@ -206,7 +214,7 @@ export function generateCharacterHTML(character) {
           </div>
           <div style="flex:1;text-align:center;">
             <div style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:${C.labelText};margin-bottom:4px;">Current</div>
-            <div style="font-family:'Cinzel Decorative',serif;font-size:22px;color:${C.goldBright};">____</div>
+            ${splitVal(hopeCurrent)}
           </div>
         </div>
         <div style="font-family:'Cinzel',serif;font-size:12px;color:${C.labelText};padding:4px 14px 8px;letter-spacing:0.5px;">Miserable threshold: ${derived.miserableThreshold}</div>
@@ -216,11 +224,11 @@ export function generateCharacterHTML(character) {
         <div style="display:flex;padding:10px 14px;">
           <div style="flex:1;text-align:center;">
             <div style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:${C.labelText};margin-bottom:4px;">Total</div>
-            <div style="font-family:'Cinzel Decorative',serif;font-size:22px;color:${C.goldBright};">____</div>
+            ${splitVal(shadowTotal)}
           </div>
           <div style="flex:1;text-align:center;">
             <div style="font-family:'Cinzel',serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:${C.labelText};margin-bottom:4px;">Permanent</div>
-            <div style="font-family:'Cinzel Decorative',serif;font-size:22px;color:${C.goldBright};">____</div>
+            ${splitVal(shadowPermanent)}
           </div>
         </div>
       </div>
