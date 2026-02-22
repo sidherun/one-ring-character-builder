@@ -1,4 +1,4 @@
-# The One Ring · Character Builder
+# The One Ring Character Builder · 2E Freedom Rules
 
 A browser-based character creation tool for **The One Ring Roleplaying Game, Second Edition**. No account, no installation, no server — everything runs in your browser and saves locally.
 
@@ -42,11 +42,13 @@ The final step renders a full formatted character sheet with:
 ### Play Mode
 A **▶ Play** button sits permanently in the top bar (disabled until step 9 is complete). Clicking it jumps to the character sheet and enters Play mode — the step indicator and bottom navigation bar are hidden to prevent accidental edits during a session. The button turns green and changes to **⏸ Pause**; clicking it exits Play mode and re-enables all navigation. Play mode is session-only and resets on reload.
 
+In Play mode the **Hope Current** field in the Hope panel is greyed out and disabled — it mirrors the value from the In-Play Tracking grid, which remains the single point of entry for that value.
+
 ### In-Play Tracking
 The character sheet has interactive fields for tracking session state:
 
 **Hope / Shadow panel** (mid-sheet):
-- **Hope Current** (pre-filled from derived max) · **Shadow Total** · **Shadow Permanent**
+- **Hope Current** — mirrors `Current Hope` from the tracking grid below; the two fields share a single value. Editable in Pause mode, read-only (greyed) in Play mode. · **Shadow Total** · **Shadow Permanent**
 
 **In-Play Tracking section** (bottom of sheet):
 All 6 fields display a `/ max` suffix for quick reference:
