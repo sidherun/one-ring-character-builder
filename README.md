@@ -49,8 +49,9 @@ The character sheet has interactive fields for tracking session state:
 - **Hope Current** (pre-filled from derived max) · **Shadow Total** · **Shadow Permanent**
 
 **In-Play Tracking section** (bottom of sheet):
-- **Current Endurance** (pre-filled from derived max) · **Current Hope** · **Current Shadow**
-- **Fellowship Points** · **Adventure Points** · **Treasure Points**
+All 6 fields display a `/ max` suffix for quick reference:
+- **Current Endurance** `/ {derived max}` · **Current Hope** `/ {derived max}` · **Current Shadow** `/ {miserable threshold}`
+- **Fellowship Points** `/ —` · **Adventure Points** `/ —` · **Treasure Points** `/ —`
 
 All values auto-save to the roster whenever a character has been saved there — no button needed.
 

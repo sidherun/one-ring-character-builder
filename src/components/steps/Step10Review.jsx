@@ -11,16 +11,19 @@ import { saveCharacterToRoster } from '../../utils/rosterStorage';
 import { generateCharacterHTML } from '../../utils/generateCharacterHTML';
 
 const TRACKING_FIELDS = [
-  { key: 'currentEndurance', label: 'Current Endurance', defaultFn: (d) => d.endurance, min: 0, max: 40, showMax: true },
-  { key: 'currentHope',      label: 'Current Hope',      defaultFn: (d) => d.hope,      min: 0, max: 30, showMax: true },
-  { key: 'currentShadow',    label: 'Current Shadow',    defaultFn: () => 0,             min: 0, max: 30 },
-  { key: 'fellowshipPoints', label: 'Fellowship Points', defaultFn: () => 0,             min: 0, max: 99 },
-  { key: 'adventurePoints',  label: 'Adventure Points',  defaultFn: () => 0,             min: 0, max: 99 },
-  { key: 'treasurePoints',   label: 'Treasure Points',   defaultFn: () => 0,             min: 0, max: 99 },
-  // Hope / Shadow panel fields
-  { key: 'hopeCurrent',      label: 'Hope Current',      defaultFn: (d) => d.hope,      min: 0, max: 30 },
-  { key: 'shadowTotal',      label: 'Shadow Total',      defaultFn: () => 0,             min: 0, max: 30 },
-  { key: 'shadowPermanent',  label: 'Shadow Permanent',  defaultFn: () => 0,             min: 0, max: 30 },
+  { key: 'currentEndurance', label: 'Current Endurance', defaultFn: (d) => d.endurance,  min: 0, max: 40, showMax: true, maxFn: (d) => d.endurance },
+  { key: 'currentHope',      label: 'Current Hope',      defaultFn: (d) => d.hope,       min: 0, max: 30, showMax: true, maxFn: (d) => d.hope },
+  { key: 'currentShadow',    label: 'Current Shadow',    defaultFn: () => 0,              min: 0, max: 30, showMax: true, maxFn: (d) => d.miserableThreshold },
+  { key: 'fellowshipPoints', label: 'Fellowship Points', defaultFn: () => 0,              min: 0, max: 99, showMax: true, maxFn: () => '—' },
+  { key: 'adventurePoints',  label: 'Adventure Points',  defaultFn: () => 0,              min: 0, max: 99, showMax: true, maxFn: () => '—' },
+  { key: 'treasurePoints',   label: 'Treasure Points',   defaultFn: () => 0,              min: 0, max: 99, showMax: true, maxFn: () => '—' },
+];
+
+// Hope / Shadow panel fields (not shown in tracking grid)
+const HOPE_SHADOW_FIELDS = [
+  { key: 'hopeCurrent',      label: 'Hope Current',     defaultFn: (d) => d.hope, min: 0, max: 30 },
+  { key: 'shadowTotal',      label: 'Shadow Total',     defaultFn: () => 0,        min: 0, max: 30 },
+  { key: 'shadowPermanent',  label: 'Shadow Permanent', defaultFn: () => 0,        min: 0, max: 30 },
 ];
 
 const SKILL_LABELS = {
@@ -132,6 +135,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
     }
     return field.defaultFn(derived);
   }, [tracking, derived]);
+
 
   const handleTrackingChange = useCallback((key, value) => {
     const numVal = value === '' ? 0 : Math.max(0, Number(value));
@@ -260,7 +264,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                 <input
                   type="number"
                   className={`${styles.splitVal} ${styles.splitInput}`}
-                  value={getTrackingValue(TRACKING_FIELDS.find(f => f.key === 'hopeCurrent'))}
+                  value={getTrackingValue(HOPE_SHADOW_FIELDS[0])}
                   min={0}
                   max={derived.hope}
                   onChange={e => handleTrackingChange('hopeCurrent', e.target.value)}
@@ -277,7 +281,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                 <input
                   type="number"
                   className={`${styles.splitVal} ${styles.splitInput}`}
-                  value={getTrackingValue(TRACKING_FIELDS.find(f => f.key === 'shadowTotal'))}
+                  value={getTrackingValue(HOPE_SHADOW_FIELDS[1])}
                   min={0}
                   max={99}
                   onChange={e => handleTrackingChange('shadowTotal', e.target.value)}
@@ -288,7 +292,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                 <input
                   type="number"
                   className={`${styles.splitVal} ${styles.splitInput}`}
-                  value={getTrackingValue(TRACKING_FIELDS.find(f => f.key === 'shadowPermanent'))}
+                  value={getTrackingValue(HOPE_SHADOW_FIELDS[2])}
                   min={0}
                   max={99}
                   onChange={e => handleTrackingChange('shadowPermanent', e.target.value)}
@@ -424,7 +428,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                     onChange={e => handleTrackingChange(field.key, e.target.value)}
                   />
                   {field.showMax && (
-                    <span className={styles.trackingMax}>/ {field.defaultFn(derived)}</span>
+                    <span className={styles.trackingMax}>/ {field.maxFn(derived)}</span>
                   )}
                 </div>
               </div>

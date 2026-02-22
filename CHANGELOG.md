@@ -8,6 +8,13 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-21 — Uniform In-Play Tracking display
+
+### Changed
+- **All 6 In-Play Tracking fields** now show a `/ max` suffix beside the input, matching the style of Current Endurance. Current Shadow shows `/ {miserableThreshold}` (the character's Shadow threshold), while Fellowship Points, Adventure Points, and Treasure Points show `/ —` since they have no fixed cap. The three Hope / Shadow panel fields (hopeCurrent, shadowTotal, shadowPermanent) were moved into a separate `HOPE_SHADOW_FIELDS` constant to prevent them appearing twice in the tracking grid.
+
+---
+
 ## 2026-02-21 — Interactive Hope / Shadow fields
 
 ### Changed

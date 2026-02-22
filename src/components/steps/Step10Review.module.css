@@ -619,9 +619,10 @@
 
 .trackingMax {
   font-family: 'Cinzel', serif;
-  font-size: 13px;
-  color: var(--text-secondary);
+  font-size: 14px;
+  color: var(--text-dim);
   white-space: nowrap;
+  min-width: 28px;
 }
 
 /* Print styles */
