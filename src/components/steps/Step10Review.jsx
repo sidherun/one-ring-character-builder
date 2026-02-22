@@ -5,7 +5,7 @@ import callings from '../../data/callings.json';
 import virtues from '../../data/virtues.json';
 import features from '../../data/features.json';
 import equipmentData from '../../data/equipment.json';
-import { deriveStats } from '../../utils/characterDerived';
+import { deriveStats, computeTotalLoad } from '../../utils/characterDerived';
 import { encodeCharacterToHash } from '../../utils/urlState';
 import { saveCharacterToRoster } from '../../utils/rosterStorage';
 import { generateCharacterHTML } from '../../utils/generateCharacterHTML';
@@ -91,9 +91,8 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
   // Must be declared before totalLoad/loadStatus which depend on it
   const tracking = character._tracking || {};
 
-  // Total Load = armour + helm + shield + weapons (per TOR2E rules)
-  const totalLoad = (eq.armourLoad || 0) + (eq.helmLoad || 0) + (eq.shieldLoad || 0)
-    + (eq.weapons || []).reduce((s, w) => s + (Number(w.load) || 0), 0);
+  // Total Load — Redoubtable (Dwarves) halves armour + helm load (rounded up)
+  const totalLoad = computeTotalLoad(eq, culture);
 
   // Current endurance from tracking (falls back to derived max if not yet tracked)
   const currentEndurance = tracking.currentEndurance !== undefined && tracking.currentEndurance !== null

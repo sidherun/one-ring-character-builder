@@ -4,7 +4,7 @@
  * Only Google Fonts needs an internet connection; layout and colours are offline-safe.
  */
 
-import { deriveStats } from './characterDerived.js';
+import { deriveStats, computeTotalLoad } from './characterDerived.js';
 import cultures from '../data/cultures.json';
 import callings from '../data/callings.json';
 import virtues from '../data/virtues.json';
@@ -103,9 +103,8 @@ export function generateCharacterHTML(character) {
   const tracking = character._tracking || {};
 
   const totalArmour = (eq.armourRating || 0) + (eq.helmRating || 0);
-  const totalLoad   = (eq.armourLoad   || 0) + (eq.helmLoad   || 0)
-                    + (eq.shieldLoad   || 0)
-                    + (eq.weapons || []).reduce((s,w) => s + (Number(w.load)||0), 0);
+  // Redoubtable (Dwarves) halves armour + helm load (rounded up)
+  const totalLoad = computeTotalLoad(eq, culture);
 
   const selectedVirtues  = (character.virtues           || []).map(id => virtues.find(v => v.id === id)).filter(Boolean);
   const selectedFeatures = (character.distinctiveFeatures || []).map(id => features.find(f => f.id === id)).filter(Boolean);

@@ -79,3 +79,26 @@ export function computeLoad(equipment) {
   }
   return load;
 }
+
+/**
+ * Computes total encumbrance load, applying the Redoubtable cultural blessing
+ * (Dwarves of Durin's Folk) if present. Redoubtable halves armour and helm load
+ * (rounding fractions up) but does NOT affect shield or weapon load.
+ */
+export function computeTotalLoad(equipment, culture) {
+  if (!equipment) return 0;
+  const isRedoubtable = culture?.culturalBlessing?.name === 'Redoubtable';
+
+  const armourLoad = isRedoubtable
+    ? Math.ceil((equipment.armourLoad || 0) / 2)
+    : (equipment.armourLoad || 0);
+
+  const helmLoad = isRedoubtable
+    ? Math.ceil((equipment.helmLoad || 0) / 2)
+    : (equipment.helmLoad || 0);
+
+  const shieldLoad = equipment.shieldLoad || 0;
+  const weaponLoad = (equipment.weapons || []).reduce((s, w) => s + (Number(w.load) || 0), 0);
+
+  return armourLoad + helmLoad + shieldLoad + weaponLoad;
+}

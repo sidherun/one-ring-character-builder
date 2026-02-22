@@ -8,6 +8,14 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-21 — Redoubtable encumbrance fix
+
+### Fixed
+- **Dwarves of Durin's Folk (Redoubtable blessing)** — Total Load on the character sheet and HTML export now correctly halves armour and helm load (rounding fractions up) per TOR2E rules. Shields and weapons are unaffected.
+- Added `computeTotalLoad(equipment, culture)` to `characterDerived.js` as the single source of truth for this calculation, consumed by both `Step10Review.jsx` and `generateCharacterHTML.js`.
+
+---
+
 ## 2026-02-21 — Hope Current greyed out in Play mode
 
 ### Changed
