@@ -165,6 +165,8 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
 
   const handleSaveToRoster = useCallback(() => {
     const id = saveCharacterToRoster({ ...character, wizardStep: step });
+    // Write the rosterId back into state so subsequent auto-saves update the same entry
+    setCharacter(prev => ({ ...prev, _rosterId: id }));
     return id;
   }, [character, step]);
 

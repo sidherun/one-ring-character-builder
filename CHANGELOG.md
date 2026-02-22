@@ -8,6 +8,13 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-21 (patch)
+
+### Fixed
+- **Roster overwrites second character with first** — `handleSaveToRoster` was not writing the generated `_rosterId` back into React state after the first save. Each subsequent "Save to Roster" click on the same character generated a fresh UUID, creating duplicate index entries and orphaning earlier ones. The returned ID is now immediately stored back into character state, so all future saves (including tracking auto-saves) correctly upsert the same roster slot.
+
+---
+
 ## 2026-02-21
 
 ### Added
