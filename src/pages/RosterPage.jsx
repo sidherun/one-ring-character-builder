@@ -26,8 +26,8 @@ export default function RosterPage({ onNewCharacter, onLoadCharacter }) {
   return (
     <div className={styles.page}>
       <div className={styles.topBar}>
-        <span className={styles.title}>The One Ring · Character Roster</span>
-        <span className={styles.edition}>Second Edition</span>
+        <span className={styles.title}>The One Ring Character Builder · 2E Freedom Rules</span>
+        <span className={styles.subtitle}>Character Roster</span>
       </div>
 
       <div className={styles.content}>
