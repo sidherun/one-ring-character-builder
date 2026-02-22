@@ -5,7 +5,7 @@ import callings from '../data/callings.json';
 import CharacterCard from '../components/CharacterCard';
 import styles from './RosterPage.module.css';
 
-export default function RosterPage({ onNewCharacter, onLoadCharacter }) {
+export default function RosterPage({ onNewCharacter, onLoadCharacter, onGoHome }) {
   const [roster, setRoster] = useState([]);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function RosterPage({ onNewCharacter, onLoadCharacter }) {
   return (
     <div className={styles.page}>
       <div className={styles.topBar}>
-        <span className={styles.title}>The One Ring Character Builder · 2E Freedom Rules</span>
+        <button type="button" className={styles.titleLink} onClick={onGoHome}>The One Ring Character Builder · 2E Freedom Rules</button>
         <span className={styles.subtitle}>Character Roster</span>
       </div>
 

@@ -253,7 +253,7 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
   return (
     <div className={styles.app}>
       <div className={styles.topBar}>
-        <span className={styles.appTitle}>The One Ring Character Builder · 2E Freedom Rules</span>
+        <a href="#" className={styles.appTitle} onClick={e => { e.preventDefault(); handleNavigate(1); }}>The One Ring Character Builder · 2E Freedom Rules</a>
         <div className={styles.topBarRight}>
           <button
             type="button"

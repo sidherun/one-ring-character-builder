@@ -42,6 +42,7 @@ export default function Router() {
       <RosterPage
         onNewCharacter={handleNewCharacter}
         onLoadCharacter={handleLoadCharacter}
+        onGoHome={goToWizard}
       />
     );
   }
