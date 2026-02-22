@@ -141,7 +141,11 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
   }, [character, step]);
 
   const updateCharacter = useCallback((updates) => {
-    setCharacter(prev => ({ ...prev, ...updates }));
+    if (typeof updates === 'function') {
+      setCharacter(prev => ({ ...prev, ...updates(prev) }));
+    } else {
+      setCharacter(prev => ({ ...prev, ...updates }));
+    }
   }, []);
 
   const handleNext = () => {

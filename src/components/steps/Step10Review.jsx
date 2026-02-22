@@ -19,11 +19,10 @@ const TRACKING_FIELDS = [
   { key: 'treasurePoints',   label: 'Treasure Points',   defaultFn: () => 0,              min: 0, max: 99, showMax: true, maxFn: () => '—' },
 ];
 
-// Hope / Shadow panel fields (not shown in tracking grid)
+// Shadow panel fields (Hope Current now shares TRACKING_FIELDS[1] — currentHope)
 const HOPE_SHADOW_FIELDS = [
-  { key: 'hopeCurrent',      label: 'Hope Current',     defaultFn: (d) => d.hope, min: 0, max: 30 },
-  { key: 'shadowTotal',      label: 'Shadow Total',     defaultFn: () => 0,        min: 0, max: 30 },
-  { key: 'shadowPermanent',  label: 'Shadow Permanent', defaultFn: () => 0,        min: 0, max: 30 },
+  { key: 'shadowTotal',      label: 'Shadow Total',     defaultFn: () => 0, min: 0, max: 30 },
+  { key: 'shadowPermanent',  label: 'Shadow Permanent', defaultFn: () => 0, min: 0, max: 30 },
 ];
 
 const SKILL_LABELS = {
@@ -166,21 +165,25 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
   const handleTrackingChange = useCallback((key, value) => {
     // Store raw string in display state so the input doesn't snap while typing
     setTrackingDisplay(prev => ({ ...prev, [key]: value }));
-    // Only commit a valid number to character state
+    // Only commit a valid number to character state — read _tracking fresh via setter
     if (value !== '' && !isNaN(Number(value))) {
       const numVal = Math.max(0, Number(value));
-      const updated = { ...tracking, [key]: numVal };
-      if (onChange) onChange({ _tracking: updated });
+      if (onChange) onChange(prev => {
+        const fresh = prev._tracking || {};
+        return { _tracking: { ...fresh, [key]: numVal } };
+      });
     }
-  }, [tracking, onChange]);
+  }, [onChange]);
 
   const handleTrackingBlur = useCallback((key, value) => {
     // On blur, coerce any remaining empty / invalid string to 0 and clear display override
     const numVal = value === '' || isNaN(Number(value)) ? 0 : Math.max(0, Number(value));
-    const updated = { ...tracking, [key]: numVal };
-    if (onChange) onChange({ _tracking: updated });
+    if (onChange) onChange(prev => {
+      const fresh = prev._tracking || {};
+      return { _tracking: { ...fresh, [key]: numVal } };
+    });
     setTrackingDisplay(prev => { const n = { ...prev }; delete n[key]; return n; });
-  }, [tracking, onChange]);
+  }, [onChange]);
 
   // Auto-save to roster whenever tracking values change (only if already in roster)
   useEffect(() => {
@@ -303,11 +306,11 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                 <input
                   type="number"
                   className={`${styles.splitVal} ${styles.splitInput}`}
-                  value={getTrackingValue(HOPE_SHADOW_FIELDS[0])}
+                  value={getTrackingValue(TRACKING_FIELDS[1])}
                   min={0}
                   max={derived.hope}
-                  onChange={e => handleTrackingChange('hopeCurrent', e.target.value)}
-                  onBlur={e => handleTrackingBlur('hopeCurrent', e.target.value)}
+                  onChange={e => handleTrackingChange('currentHope', e.target.value)}
+                  onBlur={e => handleTrackingBlur('currentHope', e.target.value)}
                 />
               </div>
             </div>
@@ -321,7 +324,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                 <input
                   type="number"
                   className={`${styles.splitVal} ${styles.splitInput}`}
-                  value={getTrackingValue(HOPE_SHADOW_FIELDS[1])}
+                  value={getTrackingValue(HOPE_SHADOW_FIELDS[0])}
                   min={0}
                   max={99}
                   onChange={e => handleTrackingChange('shadowTotal', e.target.value)}
@@ -333,7 +336,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                 <input
                   type="number"
                   className={`${styles.splitVal} ${styles.splitInput}`}
-                  value={getTrackingValue(HOPE_SHADOW_FIELDS[2])}
+                  value={getTrackingValue(HOPE_SHADOW_FIELDS[1])}
                   min={0}
                   max={99}
                   onChange={e => handleTrackingChange('shadowPermanent', e.target.value)}

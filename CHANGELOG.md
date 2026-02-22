@@ -8,6 +8,15 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-21 — Hope Current panel synced to In-Play Tracking
+
+### Fixed
+- **Hope panel Current field** now reads and writes the same `_tracking.currentHope` key as the In-Play Tracking grid — editing either input immediately reflects in the other.
+- **Stale closure bug in tracking handlers** — `handleTrackingChange` and `handleTrackingBlur` previously spread a closed-over snapshot of `_tracking`, which could drop concurrent writes. Both handlers now use a functional updater (`onChange(prev => …)`) so they always merge against the freshest state.
+- **`updateCharacter` in App.jsx** extended to accept a function updater form, threading it correctly through to `setCharacter`.
+
+---
+
 ## 2026-02-21 — Semantic load status on Armour & Load panel
 
 ### Added
