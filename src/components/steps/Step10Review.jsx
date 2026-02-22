@@ -129,18 +129,36 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
 
   // Tracking field helpers
   const tracking = character._tracking || {};
+
+  // Local display state lets inputs show intermediate strings (e.g. '' while user clears to retype)
+  const [trackingDisplay, setTrackingDisplay] = useState({});
+
   const getTrackingValue = useCallback((field) => {
+    // If user is mid-edit on this field, show their raw string
+    if (trackingDisplay[field.key] !== undefined) return trackingDisplay[field.key];
     if (tracking[field.key] !== undefined && tracking[field.key] !== null) {
       return tracking[field.key];
     }
     return field.defaultFn(derived);
-  }, [tracking, derived]);
-
+  }, [trackingDisplay, tracking, derived]);
 
   const handleTrackingChange = useCallback((key, value) => {
-    const numVal = value === '' ? 0 : Math.max(0, Number(value));
+    // Store raw string in display state so the input doesn't snap while typing
+    setTrackingDisplay(prev => ({ ...prev, [key]: value }));
+    // Only commit a valid number to character state
+    if (value !== '' && !isNaN(Number(value))) {
+      const numVal = Math.max(0, Number(value));
+      const updated = { ...tracking, [key]: numVal };
+      if (onChange) onChange({ _tracking: updated });
+    }
+  }, [tracking, onChange]);
+
+  const handleTrackingBlur = useCallback((key, value) => {
+    // On blur, coerce any remaining empty / invalid string to 0 and clear display override
+    const numVal = value === '' || isNaN(Number(value)) ? 0 : Math.max(0, Number(value));
     const updated = { ...tracking, [key]: numVal };
     if (onChange) onChange({ _tracking: updated });
+    setTrackingDisplay(prev => { const n = { ...prev }; delete n[key]; return n; });
   }, [tracking, onChange]);
 
   // Auto-save to roster whenever tracking values change (only if already in roster)
@@ -268,6 +286,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                   min={0}
                   max={derived.hope}
                   onChange={e => handleTrackingChange('hopeCurrent', e.target.value)}
+                  onBlur={e => handleTrackingBlur('hopeCurrent', e.target.value)}
                 />
               </div>
             </div>
@@ -285,6 +304,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                   min={0}
                   max={99}
                   onChange={e => handleTrackingChange('shadowTotal', e.target.value)}
+                  onBlur={e => handleTrackingBlur('shadowTotal', e.target.value)}
                 />
               </div>
               <div className={styles.splitHalf}>
@@ -296,6 +316,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                   min={0}
                   max={99}
                   onChange={e => handleTrackingChange('shadowPermanent', e.target.value)}
+                  onBlur={e => handleTrackingBlur('shadowPermanent', e.target.value)}
                 />
               </div>
             </div>
@@ -426,6 +447,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
                     min={field.min}
                     max={field.max}
                     onChange={e => handleTrackingChange(field.key, e.target.value)}
+                    onBlur={e => handleTrackingBlur(field.key, e.target.value)}
                   />
                   {field.showMax && (
                     <span className={styles.trackingMax}>/ {field.maxFn(derived)}</span>

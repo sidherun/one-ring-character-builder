@@ -8,6 +8,13 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-21 — Fix tracking input editing
+
+### Fixed
+- **Tracking fields could not be edited freely** — controlled inputs coerced empty strings to `0` on every keystroke, so clearing a field to type a new number snapped it straight back to `0`. Fixed by adding a local `trackingDisplay` state that holds the raw string while the user is typing, committing the number to character state on each valid keystroke and cleaning up on blur (empty/invalid values default to `0`). All 9 tracking inputs (6 in the grid + 3 in the Hope/Shadow panel) share this behaviour.
+
+---
+
 ## 2026-02-21 — Uniform In-Play Tracking display
 
 ### Changed
