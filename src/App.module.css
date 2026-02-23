@@ -94,3 +94,9 @@
   overflow-y: auto;
   min-height: 0;
 }
+
+@media print {
+  .app { height: auto; overflow: visible; }
+  .topBar { display: none !important; }
+  .content { overflow: visible; }
+}

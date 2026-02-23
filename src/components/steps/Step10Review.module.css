@@ -671,13 +671,57 @@
 @media print {
   .exportBar { display: none; }
   .container { padding: 0; }
+
   .sheet {
-    border: none;
+    border: 1px solid #ccc;
     padding: 16px;
-    background: white;
+    background: white !important;
     color: black;
+    box-shadow: none;
+    max-width: 100%;
   }
+  .sheet::before { display: none; }
+
   body { background: white; color: black; }
+
+  /* Override dark panel backgrounds */
+  .idField,
+  .attrCell, .body, .heart, .wits,
+  .derivedBox,
+  .hopePanel, .shadowPanel,
+  .skillGroup,
+  .traitsPanel,
+  .eqPanel,
+  .backstoryPanel,
+  .trackingSection,
+  .panelTitle {
+    background: transparent !important;
+  }
+
+  /* Headings & title */
+  .charName { color: #1a1208 !important; text-shadow: none; }
+  .charSubtitle, .gameTitle { color: #444 !important; }
+  .runeDivider { color: #888 !important; }
+
+  /* Labels */
+  .attrName, .halfLabel, .splitLabel, .derivedLabel,
+  .skillGroupTitle, .panelTitle, .idLabel,
+  .trackingLabel, .combatLabel { color: #555 !important; }
+
+  /* Values — gold → near-black */
+  .halfVal, .derivedVal, .splitVal, .combatVal,
+  .weaponName, .traitName, .eqStat strong { color: #1a1208 !important; text-shadow: none; }
+
+  /* Body text */
+  .idVal, .skillName, .backstory, .traitDesc,
+  .weaponStat, .eqStat, .threshold { color: #333 !important; }
+
+  /* Skill pips */
+  .pip { border-color: #999 !important; }
+  .pipFilled { background: #333 !important; box-shadow: none; }
+  .pipEmpty { background: #eee !important; }
+
+  /* Tracking & Hope inputs */
   .trackingInput {
     color: black;
     background: white;
@@ -687,4 +731,10 @@
     box-shadow: none;
   }
   .trackingMax { color: #666; }
+  .splitInput { color: black; border-bottom-color: #999; }
+
+  /* Borders */
+  .identityRow, .attrTrio, .attrSplit,
+  .skillGroup, .traitsPanel, .eqPanel { border-color: #ccc !important; }
+  .skillRow, .trait, .weaponRow, .eqStat { border-bottom-color: #ddd !important; }
 }

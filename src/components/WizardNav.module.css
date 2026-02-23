@@ -66,3 +66,7 @@
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+@media print {
+  .nav { display: none !important; }
+}
