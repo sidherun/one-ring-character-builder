@@ -42,7 +42,11 @@ The final step renders a full formatted character sheet with:
 ### Play Mode
 A **▶ Play** button sits permanently in the top bar (disabled until step 9 is complete). Clicking it jumps to the character sheet and enters Play mode — the step indicator and bottom navigation bar are hidden to prevent accidental edits during a session. The button turns green and changes to **⏸ Pause**; clicking it exits Play mode and re-enables all navigation. Play mode is session-only and resets on reload.
 
-In Play mode the **Hope Current** field in the Hope panel is greyed out and disabled — it mirrors the value from the In-Play Tracking grid, which remains the single point of entry for that value.
+In Play mode the following are hidden to keep the view focused on the session:
+- **Print / Save as PDF**, **Download HTML**, **Save as JSON**, and **Copy Share URL** export buttons
+- The step indicator and bottom wizard navigation
+
+**Save to Roster** and **View Roster →** remain visible in Play mode. The **Hope Current** field in the Hope panel is greyed out and disabled — it mirrors the value from the In-Play Tracking grid, which remains the single point of entry for that value.
 
 ### In-Play Tracking
 The character sheet has interactive fields for tracking session state:

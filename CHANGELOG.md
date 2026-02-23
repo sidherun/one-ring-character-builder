@@ -8,6 +8,16 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-23 — Hide export buttons in Play mode; fix restore completedSteps
+
+### Changed
+- **Play mode now hides all four export buttons** — Print / Save as PDF, Download HTML, Save as JSON, and Copy Share URL are no longer rendered when Play mode is active. Save to Roster and View Roster → remain visible. This reduces visual clutter while at the table.
+
+### Fixed
+- **Play button disabled after restoring an auto-saved character** — `handleRestore` was not setting `completedSteps`, so the Play button stayed permanently disabled even for a fully completed character. It now populates `completedSteps` from the restored `wizardStep` value.
+
+---
+
 ## 2026-02-21 — Redoubtable encumbrance fix
 
 ### Fixed
