@@ -197,10 +197,12 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
   return (
     <div className={styles.container}>
       <div className={styles.exportBar}>
-        <button type="button" className={styles.exportBtn} onClick={handlePrint}>Print / Save as PDF</button>
-        <button type="button" className={styles.exportBtn} onClick={handleExportHTML}>Download HTML</button>
-        <button type="button" className={styles.exportBtn} onClick={handleExportJSON}>Save as JSON</button>
-        <button type="button" className={styles.exportBtn} onClick={handleShareURL}>Copy Share URL</button>
+        {!isPlaying && <>
+          <button type="button" className={styles.exportBtn} onClick={handlePrint}>Print / Save as PDF</button>
+          <button type="button" className={styles.exportBtn} onClick={handleExportHTML}>Download HTML</button>
+          <button type="button" className={styles.exportBtn} onClick={handleExportJSON}>Save as JSON</button>
+          <button type="button" className={styles.exportBtn} onClick={handleShareURL}>Copy Share URL</button>
+        </>}
         {onSaveToRoster && (
           <button
             type="button"

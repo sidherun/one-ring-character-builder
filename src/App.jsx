@@ -190,7 +190,9 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
     const saved = loadFromLocalStorage();
     if (saved) {
       setCharacter(saved);
-      setStep(saved.wizardStep || 2);
+      const restoredStep = saved.wizardStep || 2;
+      setStep(restoredStep);
+      setCompletedSteps(Array.from({ length: restoredStep }, (_, i) => i + 1));
       setShowRestorePrompt(false);
     }
   };
