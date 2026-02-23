@@ -1,0 +1,175 @@
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  background: rgba(16,14,11,0.9);
+  border-bottom: 1px solid rgba(107,85,48,0.5);
+  flex-shrink: 0;
+}
+
+.backBtn {
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.backBtn:hover {
+  color: var(--gold-bright);
+}
+
+.subtitle {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 28px 32px;
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.versionRow {
+  background: linear-gradient(135deg, rgba(45,40,32,0.95), rgba(35,30,22,0.98));
+  border: 1px solid var(--border-ornate);
+  border-radius: 3px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.versionRow:hover {
+  border-color: var(--gold-dim);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+.versionMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+}
+
+.versionDate {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--label-text);
+}
+
+.versionStep {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+}
+
+.latestBadge {
+  font-family: 'Cinzel', serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--stone-dark);
+  background: var(--gold-dim);
+  padding: 2px 8px;
+  border-radius: 2px;
+  width: fit-content;
+}
+
+.versionName {
+  flex: 1;
+  font-family: 'IM Fell English', serif;
+  font-size: 15px;
+  color: var(--gold-bright);
+  font-style: italic;
+}
+
+.btnRestore {
+  padding: 9px 18px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, rgba(168,138,69,0.4), rgba(138,111,53,0.2));
+  border: 1px solid var(--gold-dim);
+  color: var(--gold-bright);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btnRestore:hover {
+  background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(138,111,53,0.3));
+  border-color: var(--gold-bright);
+  box-shadow: 0 0 10px rgba(201,168,76,0.2);
+}
+
+/* Empty state */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.emptyRune {
+  font-size: 48px;
+  color: var(--gold-dim);
+  opacity: 0.5;
+}
+
+.emptyText {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.emptyHint {
+  font-family: 'IM Fell English', serif;
+  font-size: 15px;
+  color: var(--label-text);
+  font-style: italic;
+  max-width: 380px;
+}
+
+.emptyHint strong {
+  color: var(--text-secondary);
+}

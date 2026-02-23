@@ -5,7 +5,7 @@ import callings from '../data/callings.json';
 import CharacterCard from '../components/CharacterCard';
 import styles from './RosterPage.module.css';
 
-export default function RosterPage({ onNewCharacter, onLoadCharacter, onGoHome }) {
+export default function RosterPage({ onNewCharacter, onLoadCharacter, onGoHome, onViewHistory }) {
   const [roster, setRoster] = useState([]);
 
   useEffect(() => {
@@ -62,6 +62,7 @@ export default function RosterPage({ onNewCharacter, onLoadCharacter, onGoHome }
                   callingName={calling?.name}
                   onLoad={() => handleLoad(entry.id)}
                   onDelete={() => handleDelete(entry.id)}
+                  onViewHistory={onViewHistory ? () => onViewHistory(entry.id) : undefined}
                 />
               );
             })}

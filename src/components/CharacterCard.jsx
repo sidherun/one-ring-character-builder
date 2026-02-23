@@ -1,6 +1,6 @@
 import styles from './CharacterCard.module.css';
 
-export default function CharacterCard({ entry, cultureName, callingName, onLoad, onDelete }) {
+export default function CharacterCard({ entry, cultureName, callingName, onLoad, onDelete, onViewHistory }) {
   const isComplete = entry.wizardStep >= 10;
   const savedDate = new Date(entry.savedAt).toLocaleDateString(undefined, {
     year: 'numeric', month: 'short', day: 'numeric',
@@ -22,6 +22,11 @@ export default function CharacterCard({ entry, cultureName, callingName, onLoad,
         <button type="button" className={styles.btnLoad} onClick={onLoad}>
           Load Character
         </button>
+        {onViewHistory && (
+          <button type="button" className={styles.btnHistory} onClick={onViewHistory}>
+            History
+          </button>
+        )}
         <button type="button" className={styles.btnDelete} onClick={onDelete}>
           Delete
         </button>

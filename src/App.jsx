@@ -13,8 +13,8 @@ import Step8Equipment from './components/steps/Step8Equipment';
 import Step9Identity from './components/steps/Step9Identity';
 import Step10Review from './components/steps/Step10Review';
 import { createDefaultCharacter } from './utils/defaultCharacter';
-import { saveToLocalStorage, loadFromLocalStorage, decodeCharacterFromHash } from './utils/urlState';
-import { saveCharacterToRoster } from './utils/rosterStorage';
+import { saveToLocalStorage, loadFromLocalStorage, clearLocalStorage, decodeCharacterFromHash } from './utils/urlState';
+import { saveCharacterToRoster, saveVersion } from './utils/rosterStorage';
 import cultures from './data/cultures.json';
 import callings from './data/callings.json';
 
@@ -110,6 +110,8 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
       setStep(characterToLoad.wizardStep || 10);
       setCompletedSteps([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
       setShowRestorePrompt(false);
+      setHasSaved(false);
+      clearLocalStorage();
       if (onCharacterLoaded) onCharacterLoaded();
     }
   }, [characterToLoad, onCharacterLoaded]);
@@ -168,12 +170,17 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
   };
 
   const handleStart = () => {
+    setCharacter(createDefaultCharacter());
     setStep(2);
     setCompletedSteps([1]);
+    setShowRestorePrompt(false);
+    clearLocalStorage();
   };
 
   const handleSaveToRoster = useCallback(() => {
-    const id = saveCharacterToRoster({ ...character, wizardStep: step });
+    const charToSave = { ...character, wizardStep: step };
+    const id = saveCharacterToRoster(charToSave);
+    saveVersion(id, charToSave);
     // Write the rosterId back into state so subsequent auto-saves update the same entry
     setCharacter(prev => ({ ...prev, _rosterId: id }));
     return id;

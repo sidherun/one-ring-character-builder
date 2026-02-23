@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
-  base: '/one-ring-character-builder/',
-})
+  base: mode === 'production' ? '/one-ring-character-builder/' : '/',
+}))

@@ -90,6 +90,26 @@
   box-shadow: 0 0 10px rgba(201,168,76,0.2);
 }
 
+.btnHistory {
+  padding: 9px 14px;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: transparent;
+  border: 1px solid rgba(107,85,48,0.5);
+  color: var(--text-secondary);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnHistory:hover {
+  border-color: var(--gold-dim);
+  color: var(--gold-bright);
+  background: rgba(168,138,69,0.1);
+}
+
 .btnDelete {
   padding: 9px 14px;
   font-family: 'Cinzel', serif;
