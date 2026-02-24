@@ -50,7 +50,12 @@ export default function Step2Culture({ character, onChange }) {
           >
             <div className={styles.cardHeader}>
               <span className={styles.cardName}>{culture.name}</span>
-              <span className={styles.cardLiving}>{culture.standardOfLiving}</span>
+              <div className={styles.cardHeaderRight}>
+                {selectedId === culture.id && (
+                  <div className={styles.selectedBadge}>✓ Selected</div>
+                )}
+                <span className={styles.cardLiving}>{culture.standardOfLiving}</span>
+              </div>
             </div>
             <p className={styles.cardDesc}>{culture.description}</p>
             <div className={styles.cardBlessing}>
@@ -73,10 +78,6 @@ export default function Step2Culture({ character, onChange }) {
                 <span className={styles.statVal}>WIT + {culture.derivedStats.parry.modifier}</span>
               </div>
             </div>
-
-            {selectedId === culture.id && (
-              <div className={styles.selectedBadge}>✓ Selected</div>
-            )}
           </button>
         ))}
       </div>

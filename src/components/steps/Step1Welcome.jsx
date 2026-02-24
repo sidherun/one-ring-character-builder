@@ -6,7 +6,7 @@ export default function Step1Welcome({ onStart, hasSavedChar, onRestore, onLoadF
       <div className={styles.runeRow}>ᚠ ᚢ ᚦ ᚨ ᚱ ᚲ</div>
 
       <h1 className={styles.title}>The One Ring</h1>
-      <div className={styles.subtitle}>Character Builder — Second Edition</div>
+      <div className={styles.subtitle}>Character Builder — Second Edition — Freedom Rules</div>
 
       <div className={styles.divider}>✦ ✦ ✦</div>
 
