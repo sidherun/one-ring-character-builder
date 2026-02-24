@@ -3,6 +3,7 @@
 ## On Every Push
 - Update `README.md` to reflect any feature additions, changes, or fixes
 - Add a dated entry to `CHANGELOG.md` using Added / Changed / Fixed sections
+- If the push introduces a new `localStorage` key, route, key source file, or changes the tech stack — update the relevant sections in **this file** (`CLAUDE.md`) as well
 
 ## Tech Stack
 - React 19 + Vite 7, CSS Modules, hash-based routing (`window.location.hash`)
