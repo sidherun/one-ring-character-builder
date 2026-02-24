@@ -61,6 +61,19 @@ All 6 fields display a `/ max` suffix for quick reference:
 
 All values auto-save to the roster whenever a character has been saved there — no button needed.
 
+### Session Notes
+While in Play mode, a **✎ Notes** button appears in the top bar next to **⏸ Pause**. Clicking it slides in a notes panel from the right while the character sheet shifts left to make room.
+
+Each character has their own independent set of notes, stored in `character._notes` and auto-saved to localStorage alongside all other character data.
+
+In the notes panel you can:
+- **Create** notes with a title and free-text body (click **+ New Note**)
+- **Edit** any existing note by clicking its card
+- **Delete** a note from within the editor
+- Notes are listed newest-first, each card showing title, a body preview, and last-edited date
+
+The panel can be closed with the **✕** button or by clicking **✎ Notes** again. It closes automatically when Pause is clicked.
+
 ### Character Roster
 A secondary page (accessible from the welcome screen or the review page) stores all your saved characters in browser localStorage. From the roster you can:
 - Browse all saved characters with culture, calling, and last-saved date

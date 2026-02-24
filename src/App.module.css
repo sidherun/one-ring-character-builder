@@ -93,6 +93,40 @@
   flex: 1;
   overflow-y: auto;
   min-height: 0;
+  margin-right: 0;
+  transition: margin-right 0.28s ease;
+}
+
+.contentShifted {
+  margin-right: 380px;
+}
+
+/* ── Take Notes button (Play mode only) ── */
+.btnNotes {
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  background: transparent;
+  border: 1px solid rgba(107, 85, 48, 0.6);
+  color: var(--text-secondary, #8a7a5a);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnNotes:hover {
+  background: rgba(201, 168, 76, 0.08);
+  border-color: var(--gold-dim, #8b6914);
+  color: var(--gold-bright, #c9a84c);
+}
+
+/* Active state — panel is open */
+.btnNotesOpen {
+  background: rgba(201, 168, 76, 0.12);
+  border-color: var(--gold-bright, #c9a84c);
+  color: var(--gold-bright, #c9a84c);
 }
 
 @media print {

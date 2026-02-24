@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import styles from './App.module.css';
 import StepIndicator from './components/StepIndicator';
 import WizardNav from './components/WizardNav';
+import NotesPanel from './components/NotesPanel';
 import Step1Welcome from './components/steps/Step1Welcome';
 import Step2Culture from './components/steps/Step2Culture';
 import Step3Calling from './components/steps/Step3Calling';
@@ -102,6 +103,7 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
   const [hasSaved, setHasSaved] = useState(false);
   const [showRestorePrompt, setShowRestorePrompt] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isNotesOpen, setIsNotesOpen] = useState(false);
 
   // Load a character from the roster when Router passes one in
   useEffect(() => {
@@ -142,6 +144,14 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
     }
   }, [character, step]);
 
+  // Persist notes to the roster entry whenever they change
+  useEffect(() => {
+    if (character._rosterId) {
+      saveCharacterToRoster(character);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [character._notes]);
+
   const updateCharacter = useCallback((updates) => {
     if (typeof updates === 'function') {
       setCharacter(prev => ({ ...prev, ...updates(prev) }));
@@ -161,12 +171,16 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
     if (step > 1) {
       setStep(step - 1);
       setIsPlaying(false);
+      setIsNotesOpen(false);
     }
   };
 
   const handleNavigate = (targetStep) => {
     setStep(targetStep);
-    if (targetStep !== 10) setIsPlaying(false);
+    if (targetStep !== 10) {
+      setIsPlaying(false);
+      setIsNotesOpen(false);
+    }
   };
 
   const handleStart = () => {
@@ -264,6 +278,16 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
       <div className={styles.topBar}>
         <a href="#" className={styles.appTitle} onClick={e => { e.preventDefault(); handleNavigate(1); }}>The One Ring Character Builder · 2E Freedom Rules</a>
         <div className={styles.topBarRight}>
+          {isPlaying && (
+            <button
+              type="button"
+              className={`${styles.btnNotes} ${isNotesOpen ? styles.btnNotesOpen : ''}`}
+              onClick={() => setIsNotesOpen(prev => !prev)}
+              title={isNotesOpen ? 'Close notes panel' : 'Open notes panel'}
+            >
+              ✎ Notes
+            </button>
+          )}
           <button
             type="button"
             className={`${styles.btnPlay} ${isPlaying ? styles.btnPlaying : ''}`}
@@ -273,6 +297,7 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
                 setIsPlaying(true);
               } else {
                 setIsPlaying(false);
+                setIsNotesOpen(false);
               }
             }}
             disabled={!completedSteps.includes(9)}
@@ -291,9 +316,17 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
         />
       )}
 
-      <div className={styles.content}>
+      <div className={`${styles.content} ${isNotesOpen ? styles.contentShifted : ''}`}>
         {renderStep()}
       </div>
+
+      {isPlaying && isNotesOpen && (
+        <NotesPanel
+          notes={character._notes || []}
+          onChange={notes => updateCharacter({ _notes: notes })}
+          onClose={() => setIsNotesOpen(false)}
+        />
+      )}
 
       {step > 1 && !isPlaying && (
         <WizardNav

@@ -8,6 +8,16 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-02-23 — Per-character session notes
+
+### Added
+- **✎ Notes button in Play mode** — appears in the top bar next to ⏸ Pause whenever Play mode is active. Clicking it slides a 380 px notes panel in from the right; the character sheet shifts left with a CSS transition to remain fully visible.
+- **Notes panel** (`NotesPanel.jsx`) with two views:
+  - **List view** — notes sorted newest-first, each card showing title, body preview (120 chars), and last-edited date. "+ New Note" button at top.
+  - **Edit view** — title input and free-text textarea. Header updates to "New Note" or "Edit Note" depending on context. Save / Cancel buttons at the bottom; Delete button (top-right) for existing notes.
+- Notes are **per-character**, stored under `character._notes` and auto-persisted to `localStorage` via the existing draft auto-save. A dedicated `useEffect` in `App.jsx` additionally saves to the roster entry whenever `_notes` changes, keeping the roster in sync without requiring a manual Save to Roster.
+- Panel closes automatically when ⏸ Pause is clicked or when navigating away from step 10.
+
 ## 2026-02-23 — Hide export buttons in Play mode; fix restore completedSteps
 
 ### Changed
