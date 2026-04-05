@@ -4,6 +4,11 @@ import StepIndicator from './components/StepIndicator';
 import WizardNav from './components/WizardNav';
 import NotesPanel from './components/NotesPanel';
 import Toast from './components/Toast';
+import { usePlayMode } from './hooks/usePlayMode';
+import { useNotesPanel } from './hooks/useNotesPanel';
+import { useToast } from './hooks/useToast';
+import { useAutoSave } from './hooks/useAutoSave';
+import { useCharacterManagement } from './hooks/useCharacterManagement';
 import Step1Welcome from './components/steps/Step1Welcome';
 import Step2Culture from './components/steps/Step2Culture';
 import Step3Calling from './components/steps/Step3Calling';
@@ -15,30 +20,11 @@ import Step8Equipment from './components/steps/Step8Equipment';
 import Step9Identity from './components/steps/Step9Identity';
 import Step10Review from './components/steps/Step10Review';
 import { createDefaultCharacter } from './utils/defaultCharacter';
-import { saveToLocalStorage, loadFromLocalStorage, clearLocalStorage, decodeCharacterFromHash } from './utils/urlState';
+import { clearLocalStorage } from './utils/urlState';
 import { saveCharacterToRoster, saveVersion } from './utils/rosterStorage';
-import { safeValidateCharacter } from './utils/characterSchema';
 import { validateStep } from './utils/validation';
-import cultures from './data/cultures.json';
 
 const TOTAL_STEPS = 10;
-
-// Initialise combat base values when culture/calling changes
-function computeCombatBase(character) {
-  const culture = cultures.find(c => c.id === character.cultureId);
-  if (!culture) return {};
-  const base = { axes: 0, bows: 0, spears: 0, swords: 0, knives: 0 };
-  const combatProf = culture.combatProficiencies;
-  if (combatProf?.fixed) {
-    combatProf.fixed.forEach(f => {
-      // If there's an OR, we don't pre-select; otherwise set fixed skill
-      if (!f.or) {
-        base[f.skill] = f.rank;
-      }
-    });
-  }
-  return base;
-}
 
 export default function App({ onNavigateToRoster, characterToLoad, onCharacterLoaded }) {
   const [step, setStep] = useState(1);
@@ -46,70 +32,24 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
   const [character, setCharacter] = useState(createDefaultCharacter());
   const [hasSaved, setHasSaved] = useState(false);
   const [showRestorePrompt, setShowRestorePrompt] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isNotesOpen, setIsNotesOpen] = useState(false);
-  const [toast, setToast] = useState(null);
-  const [autoSaveError, setAutoSaveError] = useState(false);
+  const { isPlaying, enterPlayMode, exitPlayMode, resetPlayModeOnNavigation } = usePlayMode();
+  const { isNotesOpen, toggleNotes, closeNotes } = useNotesPanel();
+  const { toast, showToast, hideToast } = useToast();
 
-  const showToast = useCallback((message, type = 'info', duration = 5000) => {
-    setToast({ message, type, duration });
-  }, []);
+  // Auto-save character to localStorage and roster
+  useAutoSave(character, step, showToast);
 
-  // Load a character from the roster when Router passes one in
-  useEffect(() => {
-    if (characterToLoad) {
-      setCharacter(characterToLoad);
-      setStep(characterToLoad.wizardStep || 10);
-      setCompletedSteps([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-      setShowRestorePrompt(false);
-      setHasSaved(false);
-      clearLocalStorage();
-      if (onCharacterLoaded) onCharacterLoaded();
-    }
-  }, [characterToLoad, onCharacterLoaded]);
-
-  // Check for URL hash or local storage on mount
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash.startsWith('#char=')) {
-      const decoded = decodeCharacterFromHash(hash.slice(6));
-      if (decoded) {
-        setCharacter(decoded);
-        setStep(10);
-        setCompletedSteps([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-        return;
-      }
-    }
-    const saved = loadFromLocalStorage();
-    if (saved) {
-      setHasSaved(true);
-      setShowRestorePrompt(true);
-    }
-  }, []);
-
-  // Auto-save on every character change
-  useEffect(() => {
-    if (step > 1) {
-      const result = saveToLocalStorage(character);
-      if (!result.success && !autoSaveError) {
-        showToast(result.error, 'error', 0); // 0 = no auto-dismiss
-        setAutoSaveError(true);
-      } else if (result.success && autoSaveError) {
-        setAutoSaveError(false);
-      }
-    }
-  }, [character, step, autoSaveError, showToast]);
-
-  // Persist notes to the roster entry whenever they change
-  useEffect(() => {
-    if (character._rosterId) {
-      const result = saveCharacterToRoster(character);
-      if (!result.success) {
-        showToast(result.error, 'warning', 8000);
-      }
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [character._notes, showToast]);
+  // Character loading and management
+  const { handleStart, handleRestore, handleLoadFile } = useCharacterManagement({
+    character,
+    setCharacter,
+    setStep,
+    setCompletedSteps,
+    setShowRestorePrompt,
+    setHasSaved,
+    characterToLoad,
+    onCharacterLoaded,
+  });
 
   const updateCharacter = useCallback((updates) => {
     if (typeof updates === 'function') {
@@ -129,25 +69,17 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
   const handlePrev = () => {
     if (step > 1) {
       setStep(step - 1);
-      setIsPlaying(false);
-      setIsNotesOpen(false);
+      exitPlayMode();
+      closeNotes();
     }
   };
 
   const handleNavigate = (targetStep) => {
     setStep(targetStep);
+    resetPlayModeOnNavigation(targetStep);
     if (targetStep !== 10) {
-      setIsPlaying(false);
-      setIsNotesOpen(false);
+      closeNotes();
     }
-  };
-
-  const handleStart = () => {
-    setCharacter(createDefaultCharacter());
-    setStep(2);
-    setCompletedSteps([1]);
-    setShowRestorePrompt(false);
-    clearLocalStorage();
   };
 
   const handleSaveToRoster = useCallback(() => {
@@ -168,47 +100,6 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
     setCharacter(prev => ({ ...prev, _rosterId: result.id }));
     return result.id;
   }, [character, step, showToast]);
-
-  const handleRestore = () => {
-    const saved = loadFromLocalStorage();
-    if (saved) {
-      setCharacter(saved);
-      const restoredStep = saved.wizardStep || 2;
-      setStep(restoredStep);
-      setCompletedSteps(Array.from({ length: restoredStep }, (_, i) => i + 1));
-      setShowRestorePrompt(false);
-    }
-  };
-
-  const handleLoadFile = (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      try {
-        const loaded = JSON.parse(ev.target.result);
-        const validation = safeValidateCharacter(loaded);
-        if (!validation.success) {
-          alert(`Cannot load character file:\n\n${validation.error}`);
-          return;
-        }
-        setCharacter(validation.data);
-        setStep(10);
-        setCompletedSteps([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-      } catch (err) {
-        alert('Invalid character file: ' + (err.message || 'Could not parse JSON'));
-      }
-    };
-    reader.readAsText(file);
-  };
-
-  // Keep combat base in sync with culture
-  useEffect(() => {
-    if (character.cultureId) {
-      const base = computeCombatBase(character);
-      setCharacter(prev => ({ ...prev, _combatBase: base }));
-    }
-  }, [character.cultureId]);
 
   const validation = validateStep(step, character);
 
@@ -256,7 +147,7 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
             <button
               type="button"
               className={`${styles.btnNotes} ${isNotesOpen ? styles.btnNotesOpen : ''}`}
-              onClick={() => setIsNotesOpen(prev => !prev)}
+              onClick={toggleNotes}
               title={isNotesOpen ? 'Close notes panel' : 'Open notes panel'}
             >
               ✎ Notes
@@ -268,10 +159,10 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
             onClick={() => {
               if (!isPlaying) {
                 handleNavigate(10);
-                setIsPlaying(true);
+                enterPlayMode();
               } else {
-                setIsPlaying(false);
-                setIsNotesOpen(false);
+                exitPlayMode();
+                closeNotes();
               }
             }}
             disabled={!completedSteps.includes(9)}
@@ -298,7 +189,7 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
         <NotesPanel
           notes={character._notes || []}
           onChange={notes => updateCharacter({ _notes: notes })}
-          onClose={() => setIsNotesOpen(false)}
+          onClose={closeNotes}
         />
       )}
 
@@ -319,7 +210,7 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
           message={toast.message}
           type={toast.type}
           duration={toast.duration}
-          onClose={() => setToast(null)}
+          onClose={hideToast}
         />
       )}
     </div>
