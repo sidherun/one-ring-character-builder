@@ -3,6 +3,7 @@ import styles from './App.module.css';
 import StepIndicator from './components/StepIndicator';
 import WizardNav from './components/WizardNav';
 import NotesPanel from './components/NotesPanel';
+import Toast from './components/Toast';
 import Step1Welcome from './components/steps/Step1Welcome';
 import Step2Culture from './components/steps/Step2Culture';
 import Step3Calling from './components/steps/Step3Calling';
@@ -105,6 +106,12 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
   const [showRestorePrompt, setShowRestorePrompt] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isNotesOpen, setIsNotesOpen] = useState(false);
+  const [toast, setToast] = useState(null);
+  const [autoSaveError, setAutoSaveError] = useState(false);
+
+  const showToast = useCallback((message, type = 'info', duration = 5000) => {
+    setToast({ message, type, duration });
+  }, []);
 
   // Load a character from the roster when Router passes one in
   useEffect(() => {
@@ -141,17 +148,26 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
   // Auto-save on every character change
   useEffect(() => {
     if (step > 1) {
-      saveToLocalStorage(character);
+      const result = saveToLocalStorage(character);
+      if (!result.success && !autoSaveError) {
+        showToast(result.error, 'error', 0); // 0 = no auto-dismiss
+        setAutoSaveError(true);
+      } else if (result.success && autoSaveError) {
+        setAutoSaveError(false);
+      }
     }
-  }, [character, step]);
+  }, [character, step, autoSaveError, showToast]);
 
   // Persist notes to the roster entry whenever they change
   useEffect(() => {
     if (character._rosterId) {
-      saveCharacterToRoster(character);
+      const result = saveCharacterToRoster(character);
+      if (!result.success) {
+        showToast(result.error, 'warning', 8000);
+      }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [character._notes]);
+  }, [character._notes, showToast]);
 
   const updateCharacter = useCallback((updates) => {
     if (typeof updates === 'function') {
@@ -194,12 +210,22 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
 
   const handleSaveToRoster = useCallback(() => {
     const charToSave = { ...character, wizardStep: step };
-    const id = saveCharacterToRoster(charToSave);
-    saveVersion(id, charToSave);
+    const result = saveCharacterToRoster(charToSave);
+
+    if (!result.success) {
+      showToast(result.error, 'error', 0); // Persistent error
+      return null;
+    }
+
+    const versionResult = saveVersion(result.id, charToSave);
+    if (!versionResult.success) {
+      showToast(versionResult.error, 'warning', 8000);
+    }
+
     // Write the rosterId back into state so subsequent auto-saves update the same entry
-    setCharacter(prev => ({ ...prev, _rosterId: id }));
-    return id;
-  }, [character, step]);
+    setCharacter(prev => ({ ...prev, _rosterId: result.id }));
+    return result.id;
+  }, [character, step, showToast]);
 
   const handleRestore = () => {
     const saved = loadFromLocalStorage();
@@ -343,6 +369,15 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
           nextDisabled={!validation.valid}
           validationMsg={!validation.valid ? validation.msg : ''}
           nextLabel={step === TOTAL_STEPS ? null : undefined}
+        />
+      )}
+
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          duration={toast.duration}
+          onClose={() => setToast(null)}
         />
       )}
     </div>

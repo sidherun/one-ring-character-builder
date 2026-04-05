@@ -29,8 +29,16 @@ export function saveToLocalStorage(character) {
   try {
     localStorage.setItem('tor2e_character', JSON.stringify(character));
     localStorage.setItem('tor2e_saved_at', new Date().toISOString());
-  } catch {
-    // Silently fail if localStorage is unavailable
+    return { success: true };
+  } catch (err) {
+    const isQuotaExceeded = err.name === 'QuotaExceededError' ||
+      err.code === 22 || err.code === 1014;
+    return {
+      success: false,
+      error: isQuotaExceeded
+        ? 'Storage quota exceeded. Auto-save is paused. Try deleting old characters from the roster.'
+        : 'Auto-save failed. Browser storage may be unavailable.',
+    };
   }
 }
 

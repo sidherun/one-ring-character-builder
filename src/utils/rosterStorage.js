@@ -38,11 +38,17 @@ export function saveCharacterToRoster(character) {
   try {
     localStorage.setItem(ROSTER_INDEX_KEY, JSON.stringify(index));
     localStorage.setItem(charKey(id), JSON.stringify(fullChar));
-  } catch {
-    // Storage full — silently fail
+    return { success: true, id };
+  } catch (err) {
+    const isQuotaExceeded = err.name === 'QuotaExceededError' ||
+      err.code === 22 || err.code === 1014;
+    return {
+      success: false,
+      error: isQuotaExceeded
+        ? 'Storage quota exceeded. Try deleting old characters from the roster to free up space.'
+        : 'Failed to save character. Browser storage may be unavailable.',
+    };
   }
-
-  return id;
 }
 
 export function loadCharacterFromRoster(id) {
@@ -80,8 +86,16 @@ export function saveVersion(rosterId, character) {
   const updated = [entry, ...existing].slice(0, MAX_VERSIONS);
   try {
     localStorage.setItem(versionsKey(rosterId), JSON.stringify(updated));
-  } catch {
-    // Storage full — silently fail
+    return { success: true };
+  } catch (err) {
+    const isQuotaExceeded = err.name === 'QuotaExceededError' ||
+      err.code === 22 || err.code === 1014;
+    return {
+      success: false,
+      error: isQuotaExceeded
+        ? 'Storage quota exceeded. Version history could not be saved.'
+        : 'Failed to save version history.',
+    };
   }
 }
 

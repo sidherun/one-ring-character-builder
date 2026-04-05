@@ -20,13 +20,15 @@
 
 ## Key Source Files
 - `src/main.jsx` — app entry point with ErrorBoundary wrapper
-- `src/App.jsx` — main app state, wizard logic, Play mode, Notes panel
+- `src/App.jsx` — main app state, wizard logic, Play mode, Notes panel, toast notifications
 - `src/Router.jsx` — hash-based routing (`#roster`, `#history`, default = wizard)
 - `src/utils/characterSchema.js` — Zod schema for validating character data
-- `src/utils/rosterStorage.js` — localStorage helpers incl. `saveVersion`, `getVersions`
+- `src/utils/rosterStorage.js` — localStorage helpers with error reporting
+- `src/utils/urlState.js` — localStorage draft save/load with error reporting
 - `src/pages/RosterPage.jsx` — character roster list
 - `src/pages/VersionHistoryPage.jsx` — version history for a single character
 - `src/components/ErrorBoundary.jsx` — catches React errors and shows recovery UI
+- `src/components/Toast.jsx` — toast notification component for user messages
 - `src/components/CharacterCard.jsx` — roster card (Load / History / Delete)
 - `src/components/NotesPanel.jsx` — per-character session notes slide-in panel
 - `src/components/steps/Step10Review.jsx` — character sheet + export + tracking
