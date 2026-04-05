@@ -15,6 +15,9 @@ All notable changes to the TOR2E Character Builder are documented here.
 - **Character data validation with Zod** — all character data loaded from external sources (JSON imports, localStorage, URL hashes, roster) is now validated against a schema before use. Invalid data shows clear error messages instead of causing crashes or unexpected behavior. Adds ~18KB gzipped to bundle size. Resolves GitHub issues #2 and #9.
 - **Toast notifications for storage errors** — localStorage failures (quota exceeded, browser restrictions) now show user-visible error messages via toast notifications instead of failing silently. Auto-save errors display persistent warnings with helpful guidance. Quota exceeded errors suggest deleting old characters to free space. Resolves GitHub issue #3.
 
+### Changed
+- **Extracted validation logic** — moved `validateStep` function from App.jsx to utils/validation.js. Improves code organization, testability, and reduces App.jsx size from 344 to 327 lines. Added comprehensive JSDoc documentation. Resolves GitHub issue #4.
+
 ---
 
 ## 2026-02-23 — Per-character session notes

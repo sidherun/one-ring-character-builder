@@ -18,68 +18,10 @@ import { createDefaultCharacter } from './utils/defaultCharacter';
 import { saveToLocalStorage, loadFromLocalStorage, clearLocalStorage, decodeCharacterFromHash } from './utils/urlState';
 import { saveCharacterToRoster, saveVersion } from './utils/rosterStorage';
 import { safeValidateCharacter } from './utils/characterSchema';
+import { validateStep } from './utils/validation';
 import cultures from './data/cultures.json';
-import callings from './data/callings.json';
 
 const TOTAL_STEPS = 10;
-
-function validateStep(step, character) {
-  switch (step) {
-    case 1: return { valid: true };
-    case 2: return {
-      valid: !!character.cultureId,
-      msg: 'Please select a Heroic Culture.',
-    };
-    case 3: {
-      const calling = callings.find(c => c.id === character.callingId);
-      const callingChosen = !!character.callingId;
-      const favOk = calling
-        ? (character.callingFavouredSkills || []).length >= calling.favouredSkillCount
-        : false;
-      return {
-        valid: callingChosen && favOk,
-        msg: !callingChosen
-          ? 'Please select a Calling.'
-          : 'Please choose your Calling favoured skills.',
-      };
-    }
-    case 4: {
-      const attrs = character.attributes;
-      return {
-        valid: attrs.strength != null && attrs.heart != null && attrs.wits != null,
-        msg: 'Please select an attribute set.',
-      };
-    }
-    case 5: {
-      const skillTotal = Object.values(character.additionalSkills || {}).reduce((s, v) => s + v, 0);
-      const combatTotal = Object.values(character.additionalCombat || {}).reduce((s, v) => s + v, 0);
-      return {
-        valid: skillTotal <= 20 && combatTotal <= 3,
-        msg: skillTotal > 20
-          ? 'Skill points exceed maximum (20).'
-          : combatTotal > 3
-          ? 'Combat points exceed maximum (3).'
-          : '',
-      };
-    }
-    case 6: return { valid: true };
-    case 7: {
-      return {
-        valid: (character.distinctiveFeatures || []).length === 2,
-        msg: 'Please select exactly 2 Distinctive Features.',
-      };
-    }
-    case 8: return { valid: true };
-    case 9: {
-      return {
-        valid: !!(character.identity?.name),
-        msg: 'Please enter a character name.',
-      };
-    }
-    case 10: return { valid: true };
-    default: return { valid: true };
-  }
-}
 
 // Initialise combat base values when culture/calling changes
 function computeCombatBase(character) {
