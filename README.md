@@ -117,6 +117,8 @@ npm run preview      # preview the production build locally
 | Layer | Technology |
 |-------|-----------|
 | Framework | React 19 + Vite 7 |
+| Validation | Zod for runtime schema validation |
+| Error Handling | React Error Boundary + Toast notifications |
 | Styling | CSS Modules with custom properties |
 | Routing | Hash-based (`#roster`, `#char=…`) — no router library |
 | Persistence | `localStorage` (auto-save draft + roster) |
