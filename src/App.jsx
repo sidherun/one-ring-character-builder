@@ -16,6 +16,7 @@ import Step10Review from './components/steps/Step10Review';
 import { createDefaultCharacter } from './utils/defaultCharacter';
 import { saveToLocalStorage, loadFromLocalStorage, clearLocalStorage, decodeCharacterFromHash } from './utils/urlState';
 import { saveCharacterToRoster, saveVersion } from './utils/rosterStorage';
+import { safeValidateCharacter } from './utils/characterSchema';
 import cultures from './data/cultures.json';
 import callings from './data/callings.json';
 
@@ -218,11 +219,16 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
     reader.onload = (ev) => {
       try {
         const loaded = JSON.parse(ev.target.result);
-        setCharacter(loaded);
+        const validation = safeValidateCharacter(loaded);
+        if (!validation.success) {
+          alert(`Cannot load character file:\n\n${validation.error}`);
+          return;
+        }
+        setCharacter(validation.data);
         setStep(10);
         setCompletedSteps([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-      } catch {
-        alert('Invalid character file.');
+      } catch (err) {
+        alert('Invalid character file: ' + (err.message || 'Could not parse JSON'));
       }
     };
     reader.readAsText(file);

@@ -2,6 +2,8 @@
  * URL state encoding/decoding for sharing characters.
  */
 
+import { safeValidateCharacter } from './characterSchema';
+
 export function encodeCharacterToHash(character) {
   try {
     const json = JSON.stringify(character);
@@ -15,7 +17,9 @@ export function encodeCharacterToHash(character) {
 export function decodeCharacterFromHash(hash) {
   try {
     const decoded = decodeURIComponent(atob(hash));
-    return JSON.parse(decoded);
+    const parsed = JSON.parse(decoded);
+    const validation = safeValidateCharacter(parsed);
+    return validation.success ? validation.data : null;
   } catch {
     return null;
   }
@@ -33,7 +37,10 @@ export function saveToLocalStorage(character) {
 export function loadFromLocalStorage() {
   try {
     const data = localStorage.getItem('tor2e_character');
-    return data ? JSON.parse(data) : null;
+    if (!data) return null;
+    const parsed = JSON.parse(data);
+    const validation = safeValidateCharacter(parsed);
+    return validation.success ? validation.data : null;
   } catch {
     return null;
   }

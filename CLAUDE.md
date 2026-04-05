@@ -7,6 +7,7 @@
 
 ## Tech Stack
 - React 19 + Vite 7, CSS Modules, hash-based routing (`window.location.hash`)
+- Zod for runtime schema validation of character data
 - No backend — all persistence via `localStorage`
 - Deploy: GitHub Actions on push to `main` → GitHub Pages
 - Base path: `/one-ring-character-builder/` (production only; dev serves at `/`)
@@ -21,6 +22,7 @@
 - `src/main.jsx` — app entry point with ErrorBoundary wrapper
 - `src/App.jsx` — main app state, wizard logic, Play mode, Notes panel
 - `src/Router.jsx` — hash-based routing (`#roster`, `#history`, default = wizard)
+- `src/utils/characterSchema.js` — Zod schema for validating character data
 - `src/utils/rosterStorage.js` — localStorage helpers incl. `saveVersion`, `getVersions`
 - `src/pages/RosterPage.jsx` — character roster list
 - `src/pages/VersionHistoryPage.jsx` — version history for a single character

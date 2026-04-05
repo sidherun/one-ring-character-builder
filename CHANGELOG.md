@@ -12,6 +12,7 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ### Added
 - **React Error Boundary** — uncaught errors now display a friendly recovery screen instead of crashing to a blank page. Users can reload the page or attempt to continue. Character data in localStorage is preserved. Technical error details are available in a collapsible section for debugging. Resolves GitHub issue #1.
+- **Character data validation with Zod** — all character data loaded from external sources (JSON imports, localStorage, URL hashes, roster) is now validated against a schema before use. Invalid data shows clear error messages instead of causing crashes or unexpected behavior. Adds ~18KB gzipped to bundle size. Resolves GitHub issues #2 and #9.
 
 ---
 

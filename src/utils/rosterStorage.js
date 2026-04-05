@@ -1,3 +1,5 @@
+import { safeValidateCharacter } from './characterSchema';
+
 const ROSTER_INDEX_KEY = 'tor2e_roster';
 const charKey = (id) => `tor2e_char_${id}`;
 const versionsKey = (id) => `tor2e_versions_${id}`;
@@ -46,7 +48,10 @@ export function saveCharacterToRoster(character) {
 export function loadCharacterFromRoster(id) {
   try {
     const data = localStorage.getItem(charKey(id));
-    return data ? JSON.parse(data) : null;
+    if (!data) return null;
+    const parsed = JSON.parse(data);
+    const validation = safeValidateCharacter(parsed);
+    return validation.success ? validation.data : null;
   } catch {
     return null;
   }
