@@ -8,6 +8,13 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-04-05 — Error boundary protection
+
+### Added
+- **React Error Boundary** — uncaught errors now display a friendly recovery screen instead of crashing to a blank page. Users can reload the page or attempt to continue. Character data in localStorage is preserved. Technical error details are available in a collapsible section for debugging. Resolves GitHub issue #1.
+
+---
+
 ## 2026-02-23 — Per-character session notes
 
 ### Added

@@ -18,11 +18,13 @@
 - `tor2e_versions_${id}` — version history array per roster entry (max 50)
 
 ## Key Source Files
+- `src/main.jsx` — app entry point with ErrorBoundary wrapper
 - `src/App.jsx` — main app state, wizard logic, Play mode, Notes panel
 - `src/Router.jsx` — hash-based routing (`#roster`, `#history`, default = wizard)
 - `src/utils/rosterStorage.js` — localStorage helpers incl. `saveVersion`, `getVersions`
 - `src/pages/RosterPage.jsx` — character roster list
 - `src/pages/VersionHistoryPage.jsx` — version history for a single character
+- `src/components/ErrorBoundary.jsx` — catches React errors and shows recovery UI
 - `src/components/CharacterCard.jsx` — roster card (Load / History / Delete)
 - `src/components/NotesPanel.jsx` — per-character session notes slide-in panel
 - `src/components/steps/Step10Review.jsx` — character sheet + export + tracking

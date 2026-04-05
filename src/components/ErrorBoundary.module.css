@@ -1,0 +1,110 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2416 100%);
+}
+
+.card {
+  max-width: 600px;
+  width: 100%;
+  background: #1a1511;
+  border: 2px solid var(--gold-dim, #8b7355);
+  border-radius: 8px;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.title {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  color: var(--gold-bright, #d4af37);
+  margin: 0 0 1rem 0;
+  letter-spacing: 0.03em;
+}
+
+.message {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary, #e8dcc4);
+  margin: 0 0 2rem 0;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.btnPrimary,
+.btnSecondary {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
+}
+
+.btnPrimary {
+  background: var(--gold-bright, #d4af37);
+  color: #1a1511;
+}
+
+.btnPrimary:hover {
+  background: var(--gold-dim, #8b7355);
+  transform: translateY(-1px);
+}
+
+.btnSecondary {
+  background: transparent;
+  color: var(--gold-dim, #8b7355);
+  border: 2px solid var(--gold-dim, #8b7355);
+}
+
+.btnSecondary:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--gold-bright, #d4af37);
+  color: var(--gold-bright, #d4af37);
+}
+
+.details {
+  margin-top: 2rem;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(139, 115, 85, 0.3);
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.summary {
+  font-size: 0.875rem;
+  color: var(--gold-dim, #8b7355);
+  cursor: pointer;
+  font-weight: 600;
+  user-select: none;
+}
+
+.summary:hover {
+  color: var(--gold-bright, #d4af37);
+}
+
+.errorText {
+  margin: 1rem 0 0 0;
+  padding: 1rem;
+  background: #0a0906;
+  border-radius: 4px;
+  color: #ff6b6b;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
