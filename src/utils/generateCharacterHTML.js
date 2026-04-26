@@ -5,6 +5,7 @@
  */
 
 import { deriveStats, computeTotalLoad } from './characterDerived.js';
+import { SKILL_LABELS, SKILL_GROUPS, COMBAT_LABELS } from './characterConstants.js';
 import cultures from '../data/cultures.json';
 import callings from '../data/callings.json';
 import virtues from '../data/virtues.json';
@@ -27,21 +28,6 @@ const C = {
   panelBg:      'linear-gradient(135deg,rgba(45,40,32,0.95),rgba(35,30,22,0.98))',
 };
 
-// ─── Skill / combat data ──────────────────────────────────────────────────────
-const SKILL_LABELS = {
-  awe:'Awe', athletics:'Athletics', awareness:'Awareness', hunting:'Hunting',
-  song:'Song', craft:'Craft', travel:'Travel', enhearten:'Enhearten',
-  battle:'Battle', persuade:'Persuade', stealth:'Stealth', scan:'Scan',
-  insight:'Insight', explore:'Explore', healing:'Healing', riddle:'Riddle',
-  lore:'Lore', courtesy:'Courtesy',
-};
-const SKILL_GROUPS = {
-  Body:  ['awe','athletics','awareness','hunting','song','craft'],
-  Heart: ['enhearten','battle','travel','courtesy','insight','healing'],
-  Wits:  ['persuade','stealth','scan','explore','riddle','lore'],
-};
-const COMBAT_LABELS = { axes:'Axes', bows:'Bows', spears:'Spears', swords:'Swords', knives:'Knives' };
-
 const TRACKING_FIELDS = [
   { key:'currentEndurance', label:'Current Endurance', defaultFn: d => d.endurance, showMax:true },
   { key:'currentHope',      label:'Current Hope',      defaultFn: d => d.hope,      showMax:true },
@@ -52,6 +38,7 @@ const TRACKING_FIELDS = [
 ];
 
 // ─── Small HTML helpers ───────────────────────────────────────────────────────
+const esc = (str) => String(str ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const s = (obj) => Object.entries(obj).map(([k,v]) => `${k}:${v}`).join(';');
 
 function pips(value, max = 6) {
@@ -123,7 +110,7 @@ export function generateCharacterHTML(character) {
         The One Ring · Second Edition
       </div>
       <h1 style="font-family:'Cinzel Decorative',serif;font-size:34px;color:${C.goldBright};text-shadow:0 0 30px rgba(201,168,76,0.4),0 2px 4px rgba(0,0,0,0.8);line-height:1;margin-bottom:6px;letter-spacing:2px;">
-        ${id.name || 'Unnamed Hero'}
+        ${esc(id.name || 'Unnamed Hero')}
       </h1>
       <div style="font-family:'Cinzel',serif;font-size:12px;color:${C.textSecondary};letter-spacing:1px;font-style:italic;">
         ${culture.name} · ${calling.name}
@@ -137,8 +124,8 @@ export function generateCharacterHTML(character) {
     ['Calling',          calling.name],
     ['Standard of Living', culture.standardOfLiving],
     ['Shadow Path',      calling.shadowPath],
-    ['Age',              id.age    || '—'],
-    ['Patron',           id.patron || '—'],
+    ['Age',              esc(id.age    || '—')],
+    ['Patron',           esc(id.patron || '—')],
   ];
   const identity = `
     <div style="display:flex;flex-wrap:wrap;border:1px solid ${C.borderOrnate};border-radius:2px;overflow:hidden;margin-bottom:12px;">
@@ -194,7 +181,7 @@ export function generateCharacterHTML(character) {
     </div>`;
 
   // Hope & Shadow panels — show tracked values from _tracking
-  const hopeCurrent     = tracking.hopeCurrent     ?? derived.hope;
+  const hopeCurrent     = tracking.currentHope      ?? derived.hope;
   const shadowTotal     = tracking.shadowTotal     ?? 0;
   const shadowPermanent = tracking.shadowPermanent ?? 0;
 
@@ -322,7 +309,7 @@ export function generateCharacterHTML(character) {
     ? `<div style="padding:8px 12px;font-size:12px;color:${C.labelText};font-style:italic;">None</div>`
     : (eq.weapons || []).map(w => `
         <div style="display:flex;align-items:center;gap:10px;padding:7px 12px;border-bottom:1px solid rgba(107,85,48,0.15);">
-          <span style="font-family:'Cinzel',serif;font-size:12px;color:${C.goldBright};flex:1;">${w.name}</span>
+          <span style="font-family:'Cinzel',serif;font-size:12px;color:${C.goldBright};flex:1;">${esc(w.name)}</span>
           <span style="font-family:'Cinzel',serif;font-size:13px;color:${C.labelText};">Dmg ${w.damage||'—'}</span>
           <span style="font-family:'Cinzel',serif;font-size:13px;color:${C.labelText};">Inj ${w.injury||'—'}</span>
           <span style="font-family:'Cinzel',serif;font-size:13px;color:${C.labelText};">Load ${w.load||0}</span>
@@ -352,7 +339,7 @@ export function generateCharacterHTML(character) {
 
   // Backstory
   const backstory = id.backstory ? panel('Backstory',
-    `<p style="padding:12px 16px;font-size:13px;color:${C.textSecondary};line-height:1.8;font-style:italic;white-space:pre-wrap;">${id.backstory}</p>`,
+    `<p style="padding:12px 16px;font-size:13px;color:${C.textSecondary};line-height:1.8;font-style:italic;white-space:pre-wrap;">${esc(id.backstory)}</p>`,
     { marginBottom:'12px' }
   ) : '';
 
@@ -385,7 +372,7 @@ export function generateCharacterHTML(character) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>${id.name || 'Character'} \u2014 The One Ring</title>
+  <title>${esc(id.name || 'Character')} \u2014 The One Ring</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet" />

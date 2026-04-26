@@ -9,6 +9,7 @@ import { deriveStats, computeTotalLoad } from '../../utils/characterDerived';
 import { encodeCharacterToHash } from '../../utils/urlState';
 import { saveCharacterToRoster } from '../../utils/rosterStorage';
 import { generateCharacterHTML } from '../../utils/generateCharacterHTML';
+import { SKILL_LABELS, SKILL_GROUPS, COMBAT_LABELS } from '../../utils/characterConstants';
 
 const TRACKING_FIELDS = [
   { key: 'currentEndurance', label: 'Current Endurance', defaultFn: (d) => d.endurance,  min: 0, max: 40, showMax: true, maxFn: (d) => d.endurance },
@@ -25,22 +26,6 @@ const HOPE_SHADOW_FIELDS = [
   { key: 'shadowPermanent',  label: 'Shadow Permanent', defaultFn: () => 0, min: 0, max: 30 },
 ];
 
-const SKILL_LABELS = {
-  awe: 'Awe', athletics: 'Athletics', awareness: 'Awareness', hunting: 'Hunting',
-  song: 'Song', craft: 'Craft', travel: 'Travel',
-  enhearten: 'Enhearten', battle: 'Battle', persuade: 'Persuade',
-  stealth: 'Stealth', scan: 'Scan', insight: 'Insight',
-  explore: 'Explore', healing: 'Healing', riddle: 'Riddle',
-  lore: 'Lore', courtesy: 'Courtesy',
-};
-
-const COMBAT_LABELS = { axes: 'Axes', bows: 'Bows', spears: 'Spears', swords: 'Swords', knives: 'Knives' };
-
-const SKILL_GROUPS = {
-  Body: ['awe', 'athletics', 'awareness', 'hunting', 'song', 'craft'],
-  Heart: ['enhearten', 'battle', 'travel', 'courtesy', 'insight', 'healing'],
-  Wits: ['persuade', 'stealth', 'scan', 'explore', 'riddle', 'lore'],
-};
 
 function Pip({ filled }) {
   return <span className={`${styles.pip} ${filled ? styles.pipFilled : styles.pipEmpty}`} />;
@@ -189,8 +174,7 @@ export default function Step10Review({ character, onSaveToRoster, onViewRoster, 
     if (character._rosterId && character._tracking) {
       saveCharacterToRoster(character);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [character._tracking]);
+  }, [character._tracking, character._rosterId, character]);
 
   if (!culture || !calling) return <div className={styles.container}><p>Please complete all steps first.</p></div>;
 
