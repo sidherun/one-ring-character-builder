@@ -8,6 +8,40 @@ All notable changes to the TOR2E Character Builder are documented here.
 
 ---
 
+## 2026-04-05 — Fix Load Character for pre-schema characters
+
+### Fixed
+- **Load Character button silently did nothing** for characters saved before the Zod schema was introduced (2026-04-05). `loadCharacterFromRoster` returned `null` on any schema validation failure, so `onLoadCharacter` was never called and the wizard never opened. Fix: on validation failure, fall back to the raw parsed data (with a console warning) rather than silently returning null. Characters stored in browser localStorage by this app are inherently trustworthy; strict schema rejection is reserved for external / user-supplied data. Same fix applied to `loadFromLocalStorage` (auto-save draft restore).
+
+---
+
+## 2026-04-05 — Performance memoization and accessibility
+
+### Changed
+- **Memoized `validateStep`** in `App.jsx` — runs once per step/character change instead of on every render. Resolves GitHub issue #7.
+- **Memoized culture and calling lookups** in `Step3Calling`, `Step4Attributes`, `Step5Skills`, `Step6Virtues`, and `Step7Features` — `Array.find()` on game data only re-runs when the relevant ID changes. `Step6Virtues` also memoizes the filtered virtues list and cultural blessing derivation. `Step7Features` moves culture choices to a module-level constant. Resolves GitHub issue #7.
+
+### Added
+- **Skip-to-content link** — keyboard/screen reader users can bypass the top bar and jump straight to the main content area. Resolves GitHub issue #8.
+- **Focus management on step change** — focus moves to the main content region when the wizard advances or goes back, announcing the new step to screen readers. Resolves GitHub issue #8.
+- **`aria-label` and `aria-pressed`/`aria-expanded`** on the Play and Notes top-bar buttons — replaces `title`-only labels, making them readable by all assistive technologies. Resolves GitHub issue #8.
+- **`aria-live="polite"` and `id="validation-msg"`** on the WizardNav validation message — completes the `aria-describedby` link already present on the Next button. Resolves GitHub issue #8.
+
+---
+
+## 2026-04-05 — Unit test suite
+
+### Added
+- **Vitest test suite** — 52 unit tests across two files covering all critical game mechanics:
+  - `src/utils/__tests__/characterDerived.test.js` — `deriveStats`, `getTotalSkillPoints`, `getTotalCombatPoints`, `validateSkillPoints`, `validateCombatPoints`, `computeLoad`, and `computeTotalLoad` (including Redoubtable halving/ceiling logic for Dwarves of Durin's Folk). Resolves GitHub issue #6.
+  - `src/utils/__tests__/validation.test.js` — all 10 wizard steps in `validateStep`, including boundary conditions (exact 20 skill points, exact 3 combat points, exactly 2 Distinctive Features). Resolves GitHub issue #6.
+- `npm test` script added to `package.json` (`vitest run`).
+
+### Changed
+- **App.jsx refactored** — all stateful logic extracted into custom hooks (`usePlayMode`, `useNotesPanel`, `useToast`, `useAutoSave`, `useCharacterManagement`), reducing App.jsx from 344 to 218 lines. Resolves GitHub issue #5.
+
+---
+
 ## 2026-04-05 — Error boundary protection
 
 ### Added

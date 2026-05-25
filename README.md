@@ -110,6 +110,11 @@ npm run build        # outputs to dist/
 npm run preview      # preview the production build locally
 ```
 
+**Run tests:**
+```bash
+npm test             # runs all unit tests via Vitest
+```
+
 ---
 
 ## Tech Stack
@@ -122,6 +127,7 @@ npm run preview      # preview the production build locally
 | Styling | CSS Modules with custom properties |
 | Routing | Hash-based (`#roster`, `#char=…`) — no router library |
 | Persistence | `localStorage` (auto-save draft + roster) |
+| Testing | Vitest (unit tests for derived stats and validation) |
 | Deployment | GitHub Pages via GitHub Actions |
 | Fonts | Cinzel · Cinzel Decorative (Google Fonts) |
 
@@ -140,13 +146,16 @@ src/
 │   ├── StepIndicator   # Progress indicator
 │   └── WizardNav       # Prev / Next navigation bar
 ├── data/               # cultures.json, callings.json, etc.
+├── hooks/              # usePlayMode, useNotesPanel, useToast, useAutoSave, useCharacterManagement
 ├── pages/
 │   └── RosterPage      # Character roster page
 ├── utils/
+│   ├── __tests__/            # Vitest unit tests (52 tests)
 │   ├── characterDerived.js   # Derived stat calculations
 │   ├── defaultCharacter.js   # Fresh character factory
 │   ├── rosterStorage.js      # localStorage roster CRUD
-│   └── urlState.js           # Save/load + share URL encoding
+│   ├── urlState.js           # Save/load + share URL encoding
+│   └── validation.js         # Wizard step validation logic
 ├── App.jsx             # Main wizard shell
 └── Router.jsx          # Hash-based page router
 ```

@@ -48,7 +48,11 @@ export function loadFromLocalStorage() {
     if (!data) return null;
     const parsed = JSON.parse(data);
     const validation = safeValidateCharacter(parsed);
-    return validation.success ? validation.data : null;
+    if (validation.success) return validation.data;
+    // Schema validation failed (e.g. draft saved before current schema).
+    // Return the raw parsed data rather than silently dropping the restore prompt.
+    console.warn('Draft schema validation failed, loading raw data:', validation.error);
+    return parsed;
   } catch {
     return null;
   }

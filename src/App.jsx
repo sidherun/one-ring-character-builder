@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import styles from './App.module.css';
 import StepIndicator from './components/StepIndicator';
 import WizardNav from './components/WizardNav';
@@ -101,7 +101,13 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
     return result.id;
   }, [character, step, showToast]);
 
-  const validation = validateStep(step, character);
+  const validation = useMemo(() => validateStep(step, character), [step, character]);
+
+  // Focus main content on step change so screen readers announce the new step
+  const contentRef = useRef(null);
+  useEffect(() => {
+    contentRef.current?.focus({ preventScroll: true });
+  }, [step]);
 
   const renderStep = () => {
     switch (step) {
@@ -140,6 +146,7 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
 
   return (
     <div className={styles.app}>
+      <a href="#main-content" className={styles.skipLink}>Skip to main content</a>
       <div className={styles.topBar}>
         <a href="#" className={styles.appTitle} onClick={e => { e.preventDefault(); handleNavigate(1); }}>The One Ring Character Builder · 2E Freedom Rules</a>
         <div className={styles.topBarRight}>
@@ -148,7 +155,8 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
               type="button"
               className={`${styles.btnNotes} ${isNotesOpen ? styles.btnNotesOpen : ''}`}
               onClick={toggleNotes}
-              title={isNotesOpen ? 'Close notes panel' : 'Open notes panel'}
+              aria-label={isNotesOpen ? 'Close notes panel' : 'Open notes panel'}
+              aria-expanded={isNotesOpen}
             >
               ✎ Notes
             </button>
@@ -166,7 +174,8 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
               }
             }}
             disabled={!completedSteps.includes(9)}
-            title={!completedSteps.includes(9) ? 'Complete character creation to enter Play mode' : isPlaying ? 'Pause — return to editing' : 'Enter Play mode'}
+            aria-label={!completedSteps.includes(9) ? 'Complete character creation to enter Play mode' : isPlaying ? 'Pause — return to editing' : 'Enter Play mode'}
+            aria-pressed={isPlaying}
           >
             {isPlaying ? '⏸ Pause' : '▶ Play'}
           </button>
@@ -181,7 +190,12 @@ export default function App({ onNavigateToRoster, characterToLoad, onCharacterLo
         />
       )}
 
-      <div className={`${styles.content} ${isNotesOpen ? styles.contentShifted : ''}`}>
+      <div
+        id="main-content"
+        ref={contentRef}
+        tabIndex={-1}
+        className={`${styles.content} ${isNotesOpen ? styles.contentShifted : ''}`}
+      >
         {renderStep()}
       </div>
 

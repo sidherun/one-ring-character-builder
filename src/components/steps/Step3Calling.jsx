@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import styles from './Step3Calling.module.css';
 import callings from '../../data/callings.json';
 
@@ -12,7 +13,10 @@ const SKILL_LABELS = {
 
 export default function Step3Calling({ character, onChange }) {
   const selectedId = character.callingId;
-  const selectedCalling = callings.find(c => c.id === selectedId);
+  const selectedCalling = useMemo(
+    () => callings.find(c => c.id === selectedId),
+    [selectedId]
+  );
 
   const handleSelect = (callingId) => {
     onChange({

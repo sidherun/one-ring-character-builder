@@ -4,7 +4,7 @@ export default function WizardNav({ step, totalSteps, onPrev, onNext, nextLabel,
   return (
     <div className={styles.nav}>
       <div className={styles.stepCount}>Step {step} of {totalSteps}</div>
-      {validationMsg && <div className={styles.validationMsg} role="alert">{validationMsg}</div>}
+      {validationMsg && <div id="validation-msg" className={styles.validationMsg} role="alert" aria-live="polite">{validationMsg}</div>}
       <div className={styles.buttons}>
         {step > 1 && (
           <button type="button" className={styles.btnPrev} onClick={onPrev}>

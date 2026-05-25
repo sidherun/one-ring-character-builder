@@ -1,3 +1,28 @@
+.skipLink {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skipLink:focus {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  padding: 8px 16px;
+  background: var(--gold-bright, #c9a84c);
+  color: #1a1612;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+  font-weight: 700;
+  z-index: 9999;
+  overflow: visible;
+  outline: 2px solid #fff;
+}
+
 .app {
   height: 100vh;
   display: flex;

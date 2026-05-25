@@ -1,27 +1,31 @@
+import { useMemo } from 'react';
 import styles from './Step7Features.module.css';
 import features from '../../data/features.json';
 import callings from '../../data/callings.json';
 
+const CULTURE_CHOICES = {
+  bardings: ['Bold', 'Eager', 'Fair', 'Fierce', 'Generous', 'Proud', 'Tall', 'Wilful'],
+  dwarves: ['Determined', 'Fierce', 'Generous', 'Proud', 'Secretive', 'Stern', 'Suspicious', 'Tall'],
+  elves: ['Fair', 'Keen-eyed', 'Lordly', 'Merry', 'Patient', 'Subtle', 'Swift', 'Wary'],
+  hobbits: ['Eager', 'Fair-spoken', 'Faithful', 'Generous', 'Inquisitive', 'Patient', 'Rustic', 'True-hearted'],
+  menofbree: ['Cunning', 'Fair-spoken', 'Faithful', 'Generous', 'Inquisitive', 'Patient', 'Rustic', 'True-hearted'],
+  rangers: ['Bold', 'Eager', 'Fair', 'Grim', 'Patient', 'Secretive', 'Stern', 'Tall'],
+};
+
 export default function Step7Features({ character, onChange }) {
-  const calling = callings.find(c => c.id === character.callingId);
+  const calling = useMemo(
+    () => callings.find(c => c.id === character.callingId),
+    [character.callingId]
+  );
   const callingFeature = calling?.additionalFeature;
 
   const selected = character.distinctiveFeatures || [];
   const MAX = 2;
 
-  // Culture-specific features list
-  const culture = character.cultureId;
-  const cultureChoices = {
-    bardings: ['Bold', 'Eager', 'Fair', 'Fierce', 'Generous', 'Proud', 'Tall', 'Wilful'],
-    dwarves: ['Determined', 'Fierce', 'Generous', 'Proud', 'Secretive', 'Stern', 'Suspicious', 'Tall'],
-    elves: ['Fair', 'Keen-eyed', 'Lordly', 'Merry', 'Patient', 'Subtle', 'Swift', 'Wary'],
-    hobbits: ['Eager', 'Fair-spoken', 'Faithful', 'Generous', 'Inquisitive', 'Patient', 'Rustic', 'True-hearted'],
-    menofbree: ['Cunning', 'Fair-spoken', 'Faithful', 'Generous', 'Inquisitive', 'Patient', 'Rustic', 'True-hearted'],
-    rangers: ['Bold', 'Eager', 'Fair', 'Grim', 'Patient', 'Secretive', 'Stern', 'Tall'],
-  };
-
-  const allowed = cultureChoices[culture] || [];
-  const filteredFeatures = features.filter(f => allowed.includes(f.name));
+  const filteredFeatures = useMemo(() => {
+    const allowed = CULTURE_CHOICES[character.cultureId] || [];
+    return features.filter(f => allowed.includes(f.name));
+  }, [character.cultureId]);
 
   const toggle = (id) => {
     if (selected.includes(id)) {

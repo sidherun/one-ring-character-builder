@@ -1,15 +1,22 @@
+import { useMemo } from 'react';
 import styles from './Step6Virtues.module.css';
 import virtues from '../../data/virtues.json';
 import cultures from '../../data/cultures.json';
 import callings from '../../data/callings.json';
 
 export default function Step6Virtues({ character, onChange }) {
-  const culture = cultures.find(c => c.id === character.cultureId);
-  const calling = callings.find(c => c.id === character.callingId);
+  const culture = useMemo(
+    () => cultures.find(c => c.id === character.cultureId),
+    [character.cultureId]
+  );
+  const calling = useMemo(
+    () => callings.find(c => c.id === character.callingId),
+    [character.callingId]
+  );
   const maxVirtues = calling?.startingVirtues || 1;
 
   // Filter available virtues (exclude cultural blessings, respect restrictions)
-  const available = virtues.filter(v => {
+  const available = useMemo(() => virtues.filter(v => {
     if (v.isCulturalBlessing) return false;
     if (v.restriction?.cultures) {
       return v.restriction.cultures.includes(character.cultureId);
@@ -18,13 +25,13 @@ export default function Step6Virtues({ character, onChange }) {
       return v.restriction.callings.includes(character.callingId);
     }
     return true;
-  });
+  }), [character.cultureId, character.callingId]);
 
   // Cultural blessing (auto-selected)
-  const culturalBlessing = culture ? {
+  const culturalBlessing = useMemo(() => culture ? {
     name: culture.culturalBlessing.name,
     description: culture.culturalBlessing.description,
-  } : null;
+  } : null, [culture]);
 
   const selected = character.virtues || [];
 

@@ -7,7 +7,10 @@ const ATTR_LABELS = { strength: 'Strength', heart: 'Heart', wits: 'Wits' };
 const FREE_VALUES = [7, 6, 5];
 
 export default function Step4Attributes({ character, onChange }) {
-  const culture = cultures.find(c => c.id === character.cultureId);
+  const culture = useMemo(
+    () => cultures.find(c => c.id === character.cultureId),
+    [character.cultureId]
+  );
   if (!culture) return <div className={styles.container}><p>Please select a culture first.</p></div>;
 
   const selectedSetIdx = character._attributeSetIdx ?? null;

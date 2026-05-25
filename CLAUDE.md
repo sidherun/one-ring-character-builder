@@ -8,6 +8,7 @@
 ## Tech Stack
 - React 19 + Vite 7, CSS Modules, hash-based routing (`window.location.hash`)
 - Zod for runtime schema validation of character data
+- Vitest for unit testing (`npm test` — runs `vitest run`)
 - No backend — all persistence via `localStorage`
 - Deploy: GitHub Actions on push to `main` → GitHub Pages
 - Base path: `/one-ring-character-builder/` (production only; dev serves at `/`)
@@ -20,7 +21,12 @@
 
 ## Key Source Files
 - `src/main.jsx` — app entry point with ErrorBoundary wrapper
-- `src/App.jsx` — main app state, wizard logic, Play mode, Notes panel, toast notifications
+- `src/App.jsx` — main wizard shell (~218 lines); stateful logic lives in hooks
+- `src/hooks/usePlayMode.js` — Play/Pause mode state
+- `src/hooks/useNotesPanel.js` — Notes panel open/close state
+- `src/hooks/useToast.js` — toast notification state
+- `src/hooks/useAutoSave.js` — auto-save character to localStorage and roster
+- `src/hooks/useCharacterManagement.js` — character load, restore, and file import
 - `src/Router.jsx` — hash-based routing (`#roster`, `#history`, default = wizard)
 - `src/utils/characterSchema.js` — Zod schema for validating character data
 - `src/utils/rosterStorage.js` — localStorage helpers with error reporting
@@ -36,6 +42,13 @@
 ## Dev Server
 - Run via `preview_start` tool with name `"dev"` — starts `npm run dev` on port 5173
 - Configured in `.claude/launch.json`
+
+## Unit Tests
+- `npm test` — runs `vitest run` (52 tests, ~150ms)
+- Test files live in `src/utils/__tests__/`
+- `characterDerived.test.js` — derived stats, skill/combat point validation, load calculations (including Redoubtable)
+- `validation.test.js` — all 10 wizard steps in `validateStep`
+- Tests use real data fixtures from `src/data/*.json` — no mocking of game data
 
 ## Testing a Character at Step 10
 Seed localStorage then reload:

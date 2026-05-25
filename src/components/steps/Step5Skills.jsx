@@ -23,8 +23,14 @@ const SKILL_LABELS = {
 };
 
 export default function Step5Skills({ character, onChange }) {
-  const culture = cultures.find(c => c.id === character.cultureId);
-  const calling = callings.find(c => c.id === character.callingId);
+  const culture = useMemo(
+    () => cultures.find(c => c.id === character.cultureId),
+    [character.cultureId]
+  );
+  const calling = useMemo(
+    () => callings.find(c => c.id === character.callingId),
+    [character.callingId]
+  );
 
   const favouredSkills = useMemo(() => {
     const set = new Set();
